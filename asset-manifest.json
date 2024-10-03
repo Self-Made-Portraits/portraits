@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/Self-Made-Portraits/portraits/static/css/main.580b36e1.css",
-    "main.js": "/Self-Made-Portraits/portraits/static/js/main.4cd0deb4.js",
-    "static/js/453.169f8a40.chunk.js": "/Self-Made-Portraits/portraits/static/js/453.169f8a40.chunk.js",
-    "static/media/intro.png": "/Self-Made-Portraits/portraits/static/media/intro.9a7aa01e6167e22dc7d0.png",
-    "static/media/private.jpg": "/Self-Made-Portraits/portraits/static/media/private.09922e47999ae67ad7d1.jpg",
-    "static/media/comfort.png": "/Self-Made-Portraits/portraits/static/media/comfort.f35f09b905e0d3310621.png",
-    "static/media/smile.png": "/Self-Made-Portraits/portraits/static/media/smile.bce200b56e069a602555.png",
-    "static/media/repeat.png": "/Self-Made-Portraits/portraits/static/media/repeat.c7131333837d665fe9ea.png",
-    "static/media/door.png": "/Self-Made-Portraits/portraits/static/media/door.85032c73b1b3d202be16.png",
-    "static/media/twitter.png": "/Self-Made-Portraits/portraits/static/media/twitter.4d73a49285dbe9cac801.png",
-    "static/media/dress.png": "/Self-Made-Portraits/portraits/static/media/dress.b834ec9ae79b9a29839a.png",
-    "static/media/click.png": "/Self-Made-Portraits/portraits/static/media/click.3730ff8fe84f75634780.png",
-    "static/media/assurance.png": "/Self-Made-Portraits/portraits/static/media/assurance.b3e982ac07c504808dd2.png",
-    "static/media/physical.png": "/Self-Made-Portraits/portraits/static/media/physical.c1aeb199a9557cf4f03e.png",
-    "static/media/digital.png": "/Self-Made-Portraits/portraits/static/media/digital.2720697c5225d210ef64.png",
-    "index.html": "/Self-Made-Portraits/portraits/index.html",
-    "static/media/burger.svg": "/Self-Made-Portraits/portraits/static/media/burger.00878a777adbe56929a2.svg",
-    "static/media/close-button.svg": "/Self-Made-Portraits/portraits/static/media/close-button.396f7157a69a3b7c66df.svg",
-    "main.580b36e1.css.map": "/Self-Made-Portraits/portraits/static/css/main.580b36e1.css.map",
-    "main.4cd0deb4.js.map": "/Self-Made-Portraits/portraits/static/js/main.4cd0deb4.js.map",
-    "453.169f8a40.chunk.js.map": "/Self-Made-Portraits/portraits/static/js/453.169f8a40.chunk.js.map"
+    "main.css": "/self-made-portraits.github.io/static/css/main.ee161694.css",
+    "main.js": "/self-made-portraits.github.io/static/js/main.b808d0eb.js",
+    "static/js/453.169f8a40.chunk.js": "/self-made-portraits.github.io/static/js/453.169f8a40.chunk.js",
+    "static/media/intro.png": "/self-made-portraits.github.io/static/media/intro.9a7aa01e6167e22dc7d0.png",
+    "static/media/private.jpg": "/self-made-portraits.github.io/static/media/private.09922e47999ae67ad7d1.jpg",
+    "static/media/comfort.png": "/self-made-portraits.github.io/static/media/comfort.f35f09b905e0d3310621.png",
+    "static/media/smile.png": "/self-made-portraits.github.io/static/media/smile.bce200b56e069a602555.png",
+    "static/media/repeat.png": "/self-made-portraits.github.io/static/media/repeat.c7131333837d665fe9ea.png",
+    "static/media/door.png": "/self-made-portraits.github.io/static/media/door.85032c73b1b3d202be16.png",
+    "static/media/twitter.png": "/self-made-portraits.github.io/static/media/twitter.4d73a49285dbe9cac801.png",
+    "static/media/dress.png": "/self-made-portraits.github.io/static/media/dress.b834ec9ae79b9a29839a.png",
+    "static/media/click.png": "/self-made-portraits.github.io/static/media/click.3730ff8fe84f75634780.png",
+    "static/media/assurance.png": "/self-made-portraits.github.io/static/media/assurance.b3e982ac07c504808dd2.png",
+    "static/media/physical.png": "/self-made-portraits.github.io/static/media/physical.c1aeb199a9557cf4f03e.png",
+    "static/media/digital.png": "/self-made-portraits.github.io/static/media/digital.2720697c5225d210ef64.png",
+    "index.html": "/self-made-portraits.github.io/index.html",
+    "static/media/burger.svg": "/self-made-portraits.github.io/static/media/burger.00878a777adbe56929a2.svg",
+    "static/media/close-button.svg": "/self-made-portraits.github.io/static/media/close-button.396f7157a69a3b7c66df.svg",
+    "main.ee161694.css.map": "/self-made-portraits.github.io/static/css/main.ee161694.css.map",
+    "main.b808d0eb.js.map": "/self-made-portraits.github.io/static/js/main.b808d0eb.js.map",
+    "453.169f8a40.chunk.js.map": "/self-made-portraits.github.io/static/js/453.169f8a40.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.580b36e1.css",
-    "static/js/main.4cd0deb4.js"
+    "static/css/main.ee161694.css",
+    "static/js/main.b808d0eb.js"
   ]
 }
