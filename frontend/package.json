@@ -1,6 +1,6 @@
 {
   "name": "portraits",  
-  "homepage": "self-made-portraits.github.io",
+  "homepage": "https://self-made-portraits.github.io/portraits/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
