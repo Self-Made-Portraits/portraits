@@ -1,12 +1,17 @@
 .privacy{
-    height: 90vh;
+    height: calc(100vh - 65px);
     width: 90%;
-    margin:0 auto;
+    margin: 10vh auto 0;
 }
 
 .privacy__title{
-    font-size: 48px;
+    font-size: 32px;
 }
+
+.privacy__subtitle{
+    font-size: 24px;
+}
+
 
 .privacy__container{
     display: flex;

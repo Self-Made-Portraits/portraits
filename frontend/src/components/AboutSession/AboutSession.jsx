@@ -21,7 +21,7 @@ const AboutSession = () => {
     return (
       <section className='session' id="about">
           <h1 className='session__title'>HOW IT WORKS?</h1>
-          <h2 className='session__subtitle'>Are you comfortable in front of a photographer? - Well, we’re not!</h2>
+          <h2 className='session__subtitle'>{`Are you comfortable in front of a photographer?\n- Well, we’re not!`}</h2>
             <div className='session__container'>
             {options.map((option) => (
               <div key={option.title} 

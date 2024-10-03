@@ -4,6 +4,17 @@
     margin:10vh auto;
 }
 
+
+.session__title{
+    font-size: 32px;
+    /* white-space: pre-wrap; */
+}
+
+.session__subtitle{
+    font-size: 24px;
+    /* white-space: pre-wrap; */
+}
+
 .session__container{
     display: flex;
     flex-direction: row;

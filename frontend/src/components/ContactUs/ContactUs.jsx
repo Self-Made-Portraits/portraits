@@ -6,6 +6,12 @@ const ContactUs = () => {
       <section className='contact' id='contact'>
         {/* <h1 className='contact__title'>Contact Us</h1> */}
         <div className='contact__container'>
+          <div className='contact__info'>
+          <h2 className='contact__title'>HOW TO FIND US ?</h2>
+          <p className='contact__adress'>Fatboy Slim concert, Brighton</p>
+          <p className='contact__adress'>Beach</p>
+          <p className='contact__adress'>36</p>
+          </div>
           <div className='contact__maps'>
           <iframe
             title="google-map"
@@ -16,12 +22,6 @@ const ContactUs = () => {
             allowFullScreen=""
             loading="lazy"
           ></iframe>
-          </div>
-          <div className='contact__info'>
-          <h2 className='contact__subtitle'>How to find us?</h2>
-          <p className='contact__adress'>Fatboy Slim concert, Brighton</p>
-          <p className='contact__adress'>Beach</p>
-          <p className='contact__adress'>36</p>
           </div>
         </div>
         </section>

@@ -20,7 +20,7 @@ const Privacy = () => {
 
     return (
       <section className='privacy' id="about">
-          <h1 className='privacy__title'>We respect your privacy</h1>
+          <h1 className='privacy__title'>WE RESPSECT YOUR PRIVACY</h1>
           <h2 className='privacy__subtitle'>We believe that comfort is the most important aspect of a photoshoot</h2>
             <div className='privacy__container'>
             {options.map((option) => (

@@ -1,13 +1,17 @@
 .payment{
     height: 40vh;
-    width: 80%;
-    margin: 10vh auto 20vh;
+    width: 90%;
+    margin: 10vh auto 30vh;
+}
+
+.payment__subtitle{
+    font-size: 24px;
 }
 
 .payment__container{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .payment__card{

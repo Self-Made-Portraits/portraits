@@ -7,19 +7,19 @@ import physical from '../../images/certificates/physical.png'
 const GiftCards = () => {
     return (
         <section className='gifts' id="gifts">
-            <h1 className='gifts__title'>Make a gift to your loved ones</h1>
+            <h1 className='gifts__title'>MAKE A GIFT TO YOUR LOVED ONES</h1>
             <div className='gifts__container'>
             <div className='gifts__digital'>
                 <h2 className='gifts__subtitle'>Digital certificates</h2>
                 <p className='gifts__description'>You can print them, but we suggest emailing them to minimise paper waste</p>
                 <img className='gifts__image' src={digital} alt='digital gift' />
-                <p className='gifts__price'>65</p>
+                <Button book={false} value={"BUY FOR 60"} />
             </div>
             <div className='gifts__physical'>
                 <h2 className='gifts__subtitle'>Physical certificates</h2>
                 <p className='gifts__description'>You can print them, but we suggest emailing them to minimise paper waste</p>
                 <img className='gifts__image' src={physical} alt='physical gift'/>
-                <p className='gifts__price'>65</p>
+                <Button book={false} value={"BUY FOR 60"} />
             </div>
             </div>
         </section>

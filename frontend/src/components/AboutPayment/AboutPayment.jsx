@@ -16,6 +16,7 @@ const AboutPayment = () => {
 
     return (
       <section className='payment' id="about">
+          <h2 className='payment__subtitle'>From booking to beautiful photos — make it easy with us</h2>
             <div className='payment__container'>
             {items.map((item) => (
               <div key={item.title} 

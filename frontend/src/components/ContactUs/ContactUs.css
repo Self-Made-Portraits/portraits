@@ -20,7 +20,9 @@
     width: 50%;
 }
 
-.contact__subtitle{
+.contact__title{
+    padding-top: 5vh;
+    font-size: 32px;
     color: white;
 }
 
