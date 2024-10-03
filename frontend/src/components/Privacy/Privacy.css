@@ -113,6 +113,10 @@
     .privacy__card{
         margin: 0 50px 40px;
     } 
+    
+    .privacy__title{
+        text-align: center;
+    }
 }
 @media screen and (max-width: 424px) {
     .privacy__card{

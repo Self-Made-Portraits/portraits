@@ -112,6 +112,12 @@
     .session__card{
         margin: 0 0 40px;
     } 
+    .session__title{
+        text-align: center;
+    }
+    .session__subtitle{
+        white-space: pre-wrap;
+    }
 }
 
 @media screen and (max-width: 630px) {
