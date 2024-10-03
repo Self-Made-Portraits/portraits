@@ -112,6 +112,9 @@
     }
 }
 @media screen and (max-width: 500px) {
+    .payment__subtitle{
+        /* white-space: pre-wrap; */
+    }
     .payment__block-number{
         font-size: 60px;
         margin-right: 5px;

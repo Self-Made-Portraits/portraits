@@ -40,7 +40,7 @@
 
 @media screen and (max-width: 767px) {
     .contact {
-border-bottom: 1px white solid;
+    border-bottom: 1px white solid;
     }
     .contact__container {
       flex-direction: column;

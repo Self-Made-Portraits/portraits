@@ -1,8 +1,8 @@
 .gifts{
     height: calc(100vh - 65px);
     background-color: #2B2B2B;
-    width: 90%;
-    padding: 0 5%;
+    width: 80%;
+    padding: 0 10%;
 }
 
 .gifts__title{
@@ -54,20 +54,25 @@
 @media screen and (max-width: 1200px) {
 .gifts{
     height: 100%;
-    width: 90%;
+    /* width: 90%; */
     margin: 70px auto;
+    padding-bottom: 30px;
 }
 
 .gifts__description{
     width: 70%;
     margin: 20px auto;
 }
+.gifts__image{
+    width: 220px;
+    height: 220px;
+}
 }
 
 @media screen and (max-width: 767px) {
     .gifts{
         height: 100%;
-        width: 90%;
+        width: 80%;
         margin: 30px auto;
     }
 

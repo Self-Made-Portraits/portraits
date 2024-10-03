@@ -20,8 +20,15 @@
     height: 100%;
     object-fit: cover; /* Make the image cover the entire container */
     object-position: center; /* Center the image in the container */
+    opacity: 0.99;
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
   
+  .carousel__image_transition {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
   .carousel__arrows {
     position: absolute;
     top: 50%;
