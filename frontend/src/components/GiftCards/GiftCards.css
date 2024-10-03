@@ -1,0 +1,95 @@
+.gifts{
+    height: calc(100vh - 65px);
+    background-color: #2B2B2B;
+    width: 90%;
+    padding: 0 5%;
+}
+
+.gifts__title{
+    margin-top: 0;
+    color: white;
+    font-size: 48px;
+}
+
+.gifts__container{
+    display: flex;
+    flex-direction: row;
+}
+
+.gifts__digital{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.gifts__physical{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.gifts__subtitle{
+    color: white;
+    text-align: center;
+}
+
+.gifts__description{
+    color: white
+}
+
+.gifts__price{
+    color: white
+}
+
+.gifts__image{
+    width: 300px;
+    height: 300px;
+}
+
+
+@media screen and (max-width: 1200px) {
+.gifts{
+    height: 100%;
+    width: 90%;
+    margin: 70px auto;
+}
+
+.gifts__description{
+    width: 70%;
+    margin: 20px auto;
+}
+}
+
+@media screen and (max-width: 767px) {
+    .gifts{
+        height: 100%;
+        width: 90%;
+        margin: 30px auto;
+    }
+
+    .gifts__container{
+        flex-direction: column;
+    }
+
+    .gifts__digital{
+        width: 100%;
+    }
+    
+    .gifts__physical{
+        width: 100%;
+        border-top: 2px solid white
+    }
+    
+    .gifts__description{
+        width: 70%;
+        margin: 20px auto;
+    }
+    }
+    @media screen and (max-width: 350px) {
+    .gifts__image{
+        width: 280px;
+        height: 300px;
+    }
+}

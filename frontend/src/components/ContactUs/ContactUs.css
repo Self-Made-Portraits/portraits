@@ -1,0 +1,56 @@
+.contact{
+    height: calc(100vh  - 65px);
+    background-color: black;
+}
+
+.contact__container{
+    display: flex;
+    flex-direction: row;
+}
+
+.contact__maps{
+    width: 50%;
+    height: calc(100vh  - 65px);
+}
+
+.contact__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.contact__subtitle{
+    color: white;
+}
+
+.contact__adress{
+    color: white;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .contact{
+        height: 100%;
+    }
+  }
+  
+
+@media screen and (max-width: 767px) {
+    .contact {
+border-bottom: 1px white solid;
+    }
+    .contact__container {
+      flex-direction: column;
+      height: 600px;   
+    }
+    .contact__maps {
+    width: 100%;
+    height: 50%;
+    }
+
+    .contact__info {
+        width: 100%;
+        height: 50%;
+    }
+}

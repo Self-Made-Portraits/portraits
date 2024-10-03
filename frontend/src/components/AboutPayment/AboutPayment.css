@@ -1,0 +1,134 @@
+.payment{
+    height: 40vh;
+    width: 80%;
+    margin: 10vh auto 20vh;
+}
+
+.payment__container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.payment__card{
+    width: 20%;
+    padding: 0 10px;
+    /* border-radius: 10px; */
+    border-bottom: 3px solid black;
+}
+
+.payment__block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.payment__block-number{
+    color: black;
+    font-size: 90px;
+    width: 30%;
+    margin: 0;
+}
+
+.payment__block-title{
+    color: black;
+    font-size: 24px;
+    width: 70%;
+    white-space: pre-wrap;
+    margin: 0;
+}
+
+.payment__description{
+    font-weight: bold;
+    color: #918E8E;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .payment{
+        height: 100%;
+        width: 90%;
+        margin: 70px auto;
+    }
+
+    .payment__description{
+        font-size: 14px;    
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .payment__block-number{
+        color: black;
+        font-size: 68px;
+        width: 30%;
+        margin: 0;
+    }
+
+    .payment__block-title{
+        color: black;
+        font-size: 18px;
+    }
+    .payment__description{
+        font-size: 12px;    
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .payment__card{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        margin: 0 5%;
+        height: 150px;
+        padding: 0;
+    }
+    
+    .payment__block{
+        width: 30%;
+    }
+    .payment__block-number{
+
+    }
+    
+    .payment__block-title{
+
+    }
+
+    .payment__container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .payment__description{
+        width: 70%;
+        font-size: 14px;    
+    }
+}
+@media screen and (max-width: 500px) {
+    .payment__block-number{
+        font-size: 60px;
+        margin-right: 5px;
+    }
+    
+    .payment__block-title{
+        font-size: 16px
+    }
+
+    .payment__description{
+        width: 60%;
+        font-size: 12px;    
+    }
+    
+    .payment__card{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        height: 130px;
+    }
+}

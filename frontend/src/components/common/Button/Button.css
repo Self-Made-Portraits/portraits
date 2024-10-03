@@ -1,0 +1,18 @@
+.button{
+  height:40px;
+  width: 150px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button__book-time{
+   background-color: #FF9900;
+   color: white;
+}
+
+.button__book-gift{
+    background-color: white;
+    color: black;
+}
