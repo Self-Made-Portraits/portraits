@@ -50,6 +50,44 @@ const TimeBooking = () => {
     setActiveStep(0);
   };
 
+    // Calculate the final price based on the duration
+    const finalPrice = selectedDuration === 15 ? 30 : 60;
+
+    // Handle form submission in Step 2
+    const handleFormSubmit = async () => {
+      // Check that all fields are filled
+      if (firstName && lastName && phone && email) {
+        const bookingData = {
+          date: selectedDate?.toLocaleDateString(),
+          time: selectedTime,
+          duration: selectedDuration,
+          firstName,
+          lastName,
+          phone,
+          email
+        };
+  
+        try {
+          // Send data to the server
+          const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingData),
+          });
+  
+          const result = await response.json();
+          console.log('Booking data sent successfully:', result);
+  
+          // Move to Step 3 (Done) after successful form submission
+          setActiveStep(2);
+        } catch (error) {
+          console.error('Error sending booking data:', error);
+        }
+      }
+    };
+
   return (
     <section className='time' id="time">
       <h1 className='time__title'>RESERVATION</h1>
@@ -74,6 +112,34 @@ const TimeBooking = () => {
           </div>
         </div>
       </div>
+
+      {activeStep === 2 && (
+        <div className='time__confirmation'>
+          <h2>Booking Confirmation</h2>
+          <p className='time__confirmation-text'>
+            <strong>Date:</strong> {selectedDate?.toLocaleDateString()} <br />
+            <strong>Time:</strong> {selectedTime} <br />
+            <strong>Duration:</strong> {selectedDuration} minutes <br />
+            <strong>First Name:</strong> {firstName} <br />
+            <strong>Last Name:</strong> {lastName} <br />
+            <strong>Phone:</strong> {phone} <br />
+            <strong>Email:</strong> {email} <br />
+            <strong>Total Price:</strong> £{finalPrice}
+          </p>
+          <div className='time__form-buttons'>
+            <button type='button' className='time__back-button' onClick={handleBackStep}>
+              Back
+            </button>
+            <button
+              type='button'
+              className='time__next-step-button time__next-step-button_active'
+              onClick={() => alert("Proceeding to Payment...")}
+            >
+              Proceed to Payment
+            </button>
+          </div>
+        </div>
+      )}
 
       {activeStep === 1 && (
         <>
@@ -130,6 +196,13 @@ const TimeBooking = () => {
                     />
                   </div>
                 </form>
+                <button
+                type='button'
+                className='time__next-step-button time__next-step-button_active'
+                onClick={handleFormSubmit}
+              >
+                Next
+              </button>
                 </>
       )}
 
