@@ -346,6 +346,8 @@
   .time__form-group {
     display: flex;
     flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
   }
   
   .time__form-group label {
