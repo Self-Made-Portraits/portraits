@@ -114,7 +114,13 @@ const TimeBooking = () => {
 
 {/* Step 3: Final Confirmation */}
 {activeStep === 2 && (
-        <div className='time__confirmation'>
+  <>
+        <div className='time__back-button-container'>
+          <button type='button' className='time__back-button' onClick={handleBackStep}>
+              Back
+            </button>
+          </div>
+          <div className='time__confirmation'>
           <h2>Booking Confirmation</h2>
           <p className='time__confirmation-text'>
             <strong>Date:</strong> {selectedDate?.toLocaleDateString()} <br />
@@ -126,19 +132,15 @@ const TimeBooking = () => {
             <strong>Email:</strong> {email} <br />
             <strong>Total Price:</strong> £{finalPrice}
           </p>
-          <div className='time__form-buttons'>
-            <button type='button' className='time__back-button' onClick={handleBackStep}>
-              Back
-            </button>
-            <button
+          <button
               type='button'
               className='time__next-step-button time__next-step-button_active'
               onClick={() => alert("Proceeding to Payment...")}
             >
               Proceed to Payment
             </button>
-          </div>
         </div>
+        </>
       )}
       {activeStep === 1 && (
         <>
