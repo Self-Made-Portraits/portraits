@@ -64,7 +64,7 @@ const Photo = () => {
               <div className='photos__description'>
                 <h2 className='photos__subtitle'>{item.subtitle}</h2>
                 <p className='photos__text'>{item.text}</p>
-                <Button book={true} value={"BOOK NOW"} />
+                <Button book={true} type={"time"} value={"BOOK NOW"} />
               </div>
             </>
           ) : item.position === 'left' ? (
@@ -75,7 +75,7 @@ const Photo = () => {
               <div className='photos__description'>
                 <h2 className='photos__subtitle'>{item.subtitle}</h2>
                 <p className='photos__text'>{item.text}</p>
-                <Button book={true} value={"BOOK NOW"} />
+                <Button book={true} type={"time"} value={"BOOK NOW"} />
               </div>
             </>
           ) : (
@@ -83,7 +83,7 @@ const Photo = () => {
               <div className='photos__description'>
                 <h2 className='photos__subtitle'>{item.subtitle}</h2>
                 <p className='photos__text'>{item.text}</p>
-                <Button book={true} value={"BOOK NOW"} />
+                <Button book={true} type={"time"} value={"BOOK NOW"} />
               </div>
               <div className='photos__shoots'>
                 <PhotosCarousel images={item.images} />

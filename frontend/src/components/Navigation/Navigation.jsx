@@ -94,7 +94,7 @@ const handleNavigationClick = (e, sectionId) => {
             >
                 {`Contact Us`}
             </button>
-            <Button book={true} value={"BOOK NOW"} />
+            <Button book={true} type={"time"} value={"BOOK NOW"} />
         </>
     );
 }

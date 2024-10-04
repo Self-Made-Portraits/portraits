@@ -102,7 +102,7 @@
     }
 
     .footer__reg {
-        height: 200px;
+        height: 100%;
         padding: 0 5%;
         flex-direction:column;
         justify-content: space-evenly;
@@ -117,6 +117,10 @@
     }
 
     .footer__reg-link{
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+    .footer__reg-logo_x{
         margin-left: 0;
         margin-bottom: 10px;
     }

@@ -44,20 +44,17 @@ export default function Footer() {
         </div>
         <div className='footer__reg'>
             <div  className='footer__reg-container' >
-            <p className="footer__reg-copyright">© Self Made Portraits 2024</p>
+            <Link target="_blank">
+                <img className="footer__reg-logo footer__reg-logo_x" src={twitter} alt="x" />
+            </Link>
             <Link className="footer__reg-link" to="./legal-notice">{'Studio Rules & Rental Agreement'}</Link>
             <Link className="footer__reg-link" to="./cancellation-refund-policy">{`Cancellation & Refund Policy`}</Link>
             <Link className="footer__reg-link" to="./terms-of-use">{`Terms of Use`}</Link>
             <Link className="footer__reg-link" to="./priavte-policy">{`Privacy Policy`}</Link>
             <Link className="footer__reg-link" to="./pet-policy">{`Pet Policy`}</Link>
+            <p className="footer__reg-copyright">© Self Made Portraits 2024</p>
             </div>
             <div>
-            <Link target="_blank">
-                <img className="footer__reg-logo" src={linkedin} alt="linkedin" />
-            </Link>
-            <Link target="_blank">
-                <img className="footer__reg-logo footer__reg-logo_x" src={twitter} alt="x" />
-            </Link>
             </div>
         </div>
         </footer>
