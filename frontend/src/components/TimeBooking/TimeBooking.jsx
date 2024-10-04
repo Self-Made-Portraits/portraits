@@ -9,6 +9,11 @@ const TimeBooking = () => {
   const [selectedDuration, setSelectedDuration] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -71,6 +76,7 @@ const TimeBooking = () => {
       </div>
 
       {activeStep === 1 && (
+        <>
         <div className='time__confirmation'>
           <p className='time__confirmation-text'>
             Your selected date and time is: <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong> for <strong>{selectedDuration} minutes</strong>.
@@ -79,6 +85,52 @@ const TimeBooking = () => {
             Back
           </button>
         </div>
+                  <form className='time__form'>
+                  <div className='time__form-group'>
+                    <label htmlFor='firstName'>First Name</label>
+                    <input
+                      id='firstName'
+                      type='text'
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                    />
+                  </div>
+      
+                  <div className='time__form-group'>
+                    <label htmlFor='lastName'>Last Name</label>
+                    <input
+                      id='lastName'
+                      type='text'
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                    />
+                  </div>
+      
+                  <div className='time__form-group'>
+                    <label htmlFor='phone'>Phone</label>
+                    <input
+                      id='phone'
+                      type='tel'
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                    />
+                  </div>
+      
+                  <div className='time__form-group'>
+                    <label htmlFor='email'>Email</label>
+                    <input
+                      id='email'
+                      type='email'
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                </form>
+                </>
       )}
 
       {activeStep === 0 && (
