@@ -14,6 +14,9 @@ const TimeBooking = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
+  const [coupon, setCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -46,9 +49,9 @@ const TimeBooking = () => {
     }
   };
 
-  const handleBackStep = () => {
-    setActiveStep(activeStep - 1); // Decrease the step to move to the previous one
-  };
+    const handleBackStep = () => {
+      setActiveStep(activeStep - 1); // Decrease the step to move to the previous one
+    };
     // Calculate the final price based on the duration
     const finalPrice = selectedDuration === 15 ? 30 : 60;
 
@@ -87,6 +90,16 @@ const TimeBooking = () => {
       }
     };
 
+    // Handle applying a coupon code
+    const handleApplyCoupon = () => {
+      if (coupon.toLowerCase() === "discount10") {
+        setDiscount(10); // Apply a £10 discount for a specific coupon code
+        alert("Coupon applied successfully! £10 off your total.");
+      } else {
+        alert("Invalid coupon code. Please try again.");
+      }
+    };
+
   return (
     <section className='time' id="time">
       <h1 className='time__title'>RESERVATION</h1>
@@ -115,13 +128,13 @@ const TimeBooking = () => {
 {/* Step 3: Final Confirmation */}
 {activeStep === 2 && (
   <>
-        <div className='time__back-button-container'>
+        <div className='time__confirmation'>
           <button type='button' className='time__back-button' onClick={handleBackStep}>
               Back
             </button>
+            <h2 className='time__confirmation-subtitle'>Booking Confirmation</h2>
           </div>
           <div className='time__confirmation-final'>
-          <h2>Booking Confirmation</h2>
           <p className='time__confirmation-final-text'>
             <strong>Date:</strong> {selectedDate?.toLocaleDateString()} <br />
             <strong>Time:</strong> {selectedTime} <br />
@@ -132,6 +145,22 @@ const TimeBooking = () => {
             <strong>Email:</strong> {email} <br />
             <strong>Total Price:</strong> £{finalPrice}
           </p>
+          <div className='time__coupon'>
+              <input
+                type='text'
+                className='time__coupon-input'
+                placeholder='Enter coupon code'
+                value={coupon}
+                onChange={(e) => setCoupon(e.target.value)}
+              />
+              <button
+                type='button'
+                className='time__coupon-button'
+                onClick={handleApplyCoupon}
+              >
+                Apply Coupon
+              </button>
+            </div>
           <button
               type='button'
               className='time__final-step-button time__final-step-button_active'

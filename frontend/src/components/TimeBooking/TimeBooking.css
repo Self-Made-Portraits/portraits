@@ -6,7 +6,7 @@
   }
   
   .time__title {
-    font-size: 48px;
+    font-size: 32px;
     color: #918E8E;
     margin: 8px auto;
   }
@@ -236,9 +236,21 @@
     border: 0;
     background-color: #ff9900;
     color: white;
+    font-size: 18px;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .time__final-step-button_active {
+    background-color: #ff9900;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .time__final-step-button_active:hover {
+    background-color: #e68900;
   }
   
   .time__next-step-button {
@@ -249,7 +261,7 @@
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
-    /* background-color: #918E8E; */
+    background-color: #918E8E;
     color: white;
     border: none;
     border-radius: 8px;
@@ -257,6 +269,7 @@
     transition: background-color 0.3s ease;
   }
   
+
   .time__next-step-button_active {
     background-color: #ff9900;
     color: #fff;
@@ -273,6 +286,11 @@
     grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
     align-items: center; /* Vertically align elements */
     margin-top: 40px;
+  }
+
+  .time__confirmation-subtitle{
+    text-align: center;
+    margin-bottom: 0;
   }
 
   .time__confirmation-final{
@@ -341,3 +359,37 @@
     border-radius: 4px;
   }
     
+  /* Coupon Container */
+  .time__coupon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+/* Coupon Input Field */
+.time__coupon-input {
+  padding: 8px 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 200px;
+}
+
+/* Coupon Apply Button */
+.time__coupon-button {
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #000000;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.time__coupon-button:hover {
+  background-color: #918E8E;
+}
