@@ -213,6 +213,13 @@
     color: #fff;
     border-color: #ff9900;
   }
+
+  .time__button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+  }
   
   /* Next Step Button */
   .time__next-step {
@@ -220,11 +227,17 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 40px;
+    margin-right: 0px;
   }
   
   .time__next-step-button {
-    padding: 15px 30px;
+    width: 120px;
+    height: 40px;
+    margin-top: 20px;
+    margin-right: 0;
+    padding: 10px 20px;
     font-size: 18px;
+    font-weight: bold;
     background-color: #918E8E;
     color: white;
     border: none;
@@ -244,22 +257,36 @@
   }
   
   /* Confirmation Layer Styling */
-  .time__confirmation {
+  /* .time__confirmation {
     margin-top: 40px;
     text-align: center;
+  } */
+  .time__confirmation {
+    display: grid; /* Use CSS Grid */
+    grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+    align-items: center; /* Vertically align elements */
+    margin-top: 40px;
   }
+  
   
   .time__confirmation-text {
     font-size: 1.2rem;
     color: #333;
-    margin-bottom: 20px;
+    margin: 20px auto;
+    text-align: center;
   }
   
   .time__back-button {
+    width: 120px;
+    height: 40px;
+    margin-top: 20px;
+    font-size: 18px;
     padding: 10px 20px;
-    background-color: #ddd;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #2B2B2B;
+    color: white;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
@@ -291,18 +318,4 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
-  
-  .time__back-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #ddd;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .time__back-button:hover {
-    background-color: #f1f1f1;
-  }
-  
+    

@@ -47,9 +47,8 @@ const TimeBooking = () => {
   };
 
   const handleBackStep = () => {
-    setActiveStep(0);
+    setActiveStep(activeStep - 1); // Decrease the step to move to the previous one
   };
-
     // Calculate the final price based on the duration
     const finalPrice = selectedDuration === 15 ? 30 : 60;
 
@@ -113,7 +112,8 @@ const TimeBooking = () => {
         </div>
       </div>
 
-      {activeStep === 2 && (
+{/* Step 3: Final Confirmation */}
+{activeStep === 2 && (
         <div className='time__confirmation'>
           <h2>Booking Confirmation</h2>
           <p className='time__confirmation-text'>
@@ -140,16 +140,15 @@ const TimeBooking = () => {
           </div>
         </div>
       )}
-
       {activeStep === 1 && (
         <>
         <div className='time__confirmation'>
-          <p className='time__confirmation-text'>
-            Your selected date and time is: <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong> for <strong>{selectedDuration} minutes</strong>.
-          </p>
-          <button className='time__back-button' onClick={handleBackStep}>
+        <button type='button' className='time__back-button' onClick={handleBackStep}>
             Back
           </button>
+          <p className='time__confirmation-text'>
+            Your selected date and time is:<br/> <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong> for <strong>{selectedDuration} minutes</strong>.
+          </p>
         </div>
                   <form className='time__form'>
                   <div className='time__form-group'>
@@ -196,6 +195,7 @@ const TimeBooking = () => {
                     />
                   </div>
                 </form>
+                <div className='time__button-container'>
                 <button
                 type='button'
                 className='time__next-step-button time__next-step-button_active'
@@ -203,6 +203,7 @@ const TimeBooking = () => {
               >
                 Next
               </button>
+              </div>
                 </>
       )}
 
