@@ -6,9 +6,9 @@
   }
   
   .time__title {
-    font-size: 32px;
+    font-size: 28px;
     color: #918E8E;
-    margin: 8px auto;
+    margin: 2px auto;
   }
   
   /* Navigation Styling */
@@ -70,7 +70,7 @@
   
   /* Label Styling */
   .time__label {
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 1rem;
     color: #918e8e;
     position: absolute;
@@ -340,14 +340,15 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-top: 20px;
+    width: 50%;
+    margin: 0 auto;
   }
+
   
   .time__form-group {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
   }
   
   .time__form-group label {
@@ -394,4 +395,20 @@
 
 .time__coupon-button:hover {
   background-color: #918E8E;
+}
+
+.time__form-options {
+  display: flex;
+  gap: 20px; /* Spacing between Yes and No options */
+  margin-top: 10px;
+}
+
+.time__form-options label {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.time__form-options input[type='radio'] {
+  margin-right: 8px;
 }

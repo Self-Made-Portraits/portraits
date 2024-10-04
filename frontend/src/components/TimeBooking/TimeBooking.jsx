@@ -13,6 +13,7 @@ const TimeBooking = () => {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [willComeWithPets, setWillComeWithPets] = useState(null);
 
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
@@ -66,7 +67,8 @@ const TimeBooking = () => {
           firstName,
           lastName,
           phone,
-          email
+          email,
+          willComeWithPets
         };
   
         try {
@@ -224,6 +226,33 @@ const TimeBooking = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                     />
+                  </div>
+
+                    {/* New Field: Will you come with pets? */}
+                <div className='time__form-group'>
+                  <label>Will you come with pets?</label>
+                  <div className='time__form-options'>
+                    <label>
+                      <input
+                        type='radio'
+                        name='pets'
+                        value='Yes'
+                        onChange={(e) => setWillComeWithPets(e.target.value)}
+                        required
+                      />
+                      Yes
+                    </label>
+                    <label>
+                      <input
+                        type='radio'
+                        name='pets'
+                        value='No'
+                        onChange={(e) => setWillComeWithPets(e.target.value)}
+                        required
+                      />
+                      No
+                    </label>
+                  </div>
                   </div>
                 </form>
                 <div className='time__button-container'>
