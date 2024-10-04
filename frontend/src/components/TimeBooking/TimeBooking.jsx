@@ -120,9 +120,9 @@ const TimeBooking = () => {
               Back
             </button>
           </div>
-          <div className='time__confirmation'>
+          <div className='time__confirmation-final'>
           <h2>Booking Confirmation</h2>
-          <p className='time__confirmation-text'>
+          <p className='time__confirmation-final-text'>
             <strong>Date:</strong> {selectedDate?.toLocaleDateString()} <br />
             <strong>Time:</strong> {selectedTime} <br />
             <strong>Duration:</strong> {selectedDuration} minutes <br />
@@ -134,7 +134,7 @@ const TimeBooking = () => {
           </p>
           <button
               type='button'
-              className='time__next-step-button time__next-step-button_active'
+              className='time__final-step-button time__final-step-button_active'
               onClick={() => alert("Proceeding to Payment...")}
             >
               Proceed to Payment
@@ -255,7 +255,7 @@ const TimeBooking = () => {
             onClick={handleNextStep}
             disabled={!isValidDate || !selectedDuration || !selectedTime}
           >
-            Next Step
+            Next
           </button>
         </div>
       )}
