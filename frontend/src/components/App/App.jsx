@@ -14,7 +14,7 @@ function App() {
     <div className="App">
       <Header activeSection={activeSection} setActiveSection={setActiveSection}/>
       <Routes>
-      <Route exact path="/" element={<Main activeSection={activeSection} setActiveSection={setActiveSection} />}/>
+      <Route exact path="/portraits" element={<Main activeSection={activeSection} setActiveSection={setActiveSection} />}/>
       <Route exact path="/book/time" element={<TimeBooking/>} />
       <Route exact path="/book/gift" element={<GiftBooking/>} />
       <Route exact path="/book/gift/digital" element={<GiftBooking/>} />
