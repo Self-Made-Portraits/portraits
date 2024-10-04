@@ -18,7 +18,7 @@ const Button = ({ book, value, type }) => {
 
   return (
     <Link to={path} className={`button ${book ? 'button__book-time' : 'button__book-gift'}`}>
-      <p className='button__value' >{value}</p>
+      {value}
     </Link>
   );
 };

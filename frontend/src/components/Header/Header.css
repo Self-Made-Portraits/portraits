@@ -18,10 +18,8 @@
     justify-content: flex-end;
     align-items: center;
     height: 25%;
-    /* width: 20px; */
     margin-top: 3px;
     margin-bottom: 15px;
-    /* border-bottom: #001F3D 2px solid; */
 }
 
 .header__linkedin-logo{
@@ -29,7 +27,6 @@
     height: 2.2vh;   
     margin: 0;
     padding: 0;
-    /* margin-right: 40px; */
 }
 
 .header__link{
