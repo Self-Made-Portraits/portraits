@@ -30,7 +30,7 @@ export default function Header({ activeSection, setActiveSection }) {
   return (
     <>
       <header className="header">
-        <Link to="/">
+        <Link to="/portraits">
           <img
             id={"0"}
             className="header__logo"
