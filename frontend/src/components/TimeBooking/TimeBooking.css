@@ -101,15 +101,6 @@
     padding: 8px;
   }
   
-  /* Container for Duration Buttons, Calendar, and Time Slots */
-  .time__container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 30px;
-    margin-top: 50px;
-  }
-  
   .time__button-container{
     display: flex;
     flex-direction: row;
@@ -255,19 +246,6 @@
   .time{
     height: 100%;
     margin-bottom: 30px;
-  }
-  /* Container for Duration Buttons, Calendar, and Time Slots */
-  .time__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    margin-top: 50px;
-  }
-  .time__duration-buttons{
-    margin-top: 10px; 
-    flex-direction: row;
   }
 
   .time__back-button{

@@ -13,6 +13,9 @@
     color: #fff; /* Optional: Change text color for better contrast */
 }
 
+.react-calendar__tile{
+  color: black;
+}
 /* Custom styles for the active date tile */
 .react-calendar__tile--active {
   background-color: #ff9900; /* Change to your desired background color */
@@ -20,9 +23,20 @@
   font-weight: bold; /* Optional: Emphasize the selected date */
 }
 
+  /* Container for Duration Buttons, Calendar, and Time Slots */
+  .time__container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 50px;
+  }
+  
+
 
   /* Calendar Container */
   .time__calendar {
+    position: relative;
     flex: 1;
     max-width: 350px;
     background: #f9f9f9;
@@ -156,6 +170,22 @@
     }
 
 @media screen and (max-width: 1023px) {
+    /* Container for Duration Buttons, Calendar, and Time Slots */
+    .time__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .time__duration-buttons{
+      margin-top: 10px; 
+      flex-direction: row;
+    }
+
+    
   .time__error-message-duration{
     top: -40px;
     left: -10px;
@@ -164,6 +194,9 @@
   }
 
 @media screen and (max-width: 767px) {
+  /* .time__container {
+    flex-direction: row;
+  } */
   .time__slots-container{
     margin: 0 auto;
   }
