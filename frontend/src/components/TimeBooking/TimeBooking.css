@@ -416,6 +416,21 @@
   margin-right: 8px;
 }
 
+@media screen and (max-width: 1200px) {
+  .time__confirmation-text{
+    font-size: 16px;
+  }
+
+.time__confirmation{
+  display: flex;
+  flex-direction: column;
+}
+
+.time__back-button{
+  align-self: flex-start;
+}
+}
+
 
 @media screen and (max-width: 1023px) {
   .time{
@@ -456,6 +471,15 @@
   .time__slot{
     padding: 5px 10px;
   }
+
+  .time__confirmation-text{
+    margin-top: 14px;
+    font-size: 16px;
+  }
+  .time__form{
+    width: 90%;
+  }
+
 }
 
 @media screen and (max-width: 370px) {
