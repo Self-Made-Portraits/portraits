@@ -129,7 +129,9 @@ const TimeBooking = () => {
         setRemainingTime((prevTime) => {
           if (prevTime <= 1) {
             clearInterval(timer);
-            alert('Time is up! Please restart the booking process.');
+            alert('Time is up! You will be redirected to the first step.');
+            setActiveStep(0); // Redirect to Step 1
+            resetFormData();  // Optional: Reset all form data
             return 0;
           }
           return prevTime - 1;
@@ -139,6 +141,19 @@ const TimeBooking = () => {
 
     return () => clearInterval(timer); // Cleanup the timer when component unmounts or step changes
   }, [activeStep]);
+    // Function to reset form data (optional)
+    const resetFormData = () => {
+      setSelectedDate(null);
+      setSelectedDuration(null);
+      setSelectedTime(null);
+      setFirstName("");
+      setLastName("");
+      setPhone("");
+      setEmail("");
+      setWillComeWithPets(null);
+      setCoupon("");
+      setDiscount(0);
+    };
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -351,6 +366,7 @@ const TimeBooking = () => {
               <strong>Total Price:</strong> £{finalPrice}
             </p>
 
+            {/* Coupon Input Section */}
             <div className='time__coupon'>
               <input
                 type='text'
@@ -368,11 +384,12 @@ const TimeBooking = () => {
               </button>
             </div>
 
+            {/* Proceed to Payment Button */}
             <button
               type='button'
               className='time__final-step-button time__final-step-button_active'
               onClick={() => alert("Proceeding to Payment...")}
-              disabled={remainingTime === 0}
+              disabled={remainingTime === 0} // Disable if the timer reaches 0
             >
               Proceed to Payment
             </button>
