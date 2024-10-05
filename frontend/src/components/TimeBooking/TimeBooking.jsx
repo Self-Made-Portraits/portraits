@@ -253,6 +253,7 @@ const TimeBooking = () => {
                 <label>
                   <input
                     type='radio'
+                    className='time__radio'
                     name='pets'
                     value='Yes'
                     onChange={(e) => setWillComeWithPets(e.target.value)}
@@ -263,6 +264,7 @@ const TimeBooking = () => {
                 <label>
                   <input
                     type='radio'
+                    className='time__radio'
                     name='pets'
                     value='No'
                     onChange={(e) => setWillComeWithPets(e.target.value)}

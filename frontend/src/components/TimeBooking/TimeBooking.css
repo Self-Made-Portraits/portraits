@@ -412,8 +412,9 @@
   align-items: center;
 }
 
-.time__form-options input[type='radio'] {
+.time__radio{
   margin-right: 8px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1200px) {
