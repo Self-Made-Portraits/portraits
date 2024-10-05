@@ -4,24 +4,28 @@ import './TimeBookingVerification.css';
 
 const TimeBookingVerification = ({
   selectedDate,
+  setSelectedDate,
   selectedTime,
+  setSelectedTime,
   selectedDuration,
+  setSelectedDuration,
   firstName,
+  setFirstName,
   lastName,
+  setLastName,
   phone,
+  setPhone,
   email,
-  coupon,
-  setCoupon,
-  discount,
-  setDiscount,
+  setEmail,
+  setWillComeWithPets,
   handleBackStep,
-  resetFormData,
   activeStep,
   setActiveStep
 }) => {
 
 const [remainingTime, setRemainingTime] = useState(600); // Timer state for countdown (in seconds)
-
+const [coupon, setCoupon] = useState("");
+const [discount, setDiscount] = useState(0);
 // Calculate the final price based on the duration
   const finalPrice = (selectedDuration === 15 ? 30 : 60) - discount;
 
@@ -34,6 +38,20 @@ const [remainingTime, setRemainingTime] = useState(600); // Timer state for coun
       alert("Invalid coupon code. Please try again.");
     }
   };
+
+    // Function to reset form data (optional)
+    const resetFormData = () => {
+        setSelectedDate(null);
+        setSelectedDuration(null);
+        setSelectedTime(null);
+        setFirstName("");
+        setLastName("");
+        setPhone("");
+        setEmail("");
+        setWillComeWithPets(null);
+        setCoupon("");
+        setDiscount(0);
+      };
 
     // Handle Timer for Step 3
     useEffect(() => {

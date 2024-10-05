@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import 'react-calendar/dist/Calendar.css';
+
 import './TimeBooking.css';
 import TimeBookingDate from '../TimeBookingDate/TimeBookingDate';
 import TimeBookingForm from '../TimeBookingForm/TimeBookingForm';
@@ -16,8 +16,6 @@ const TimeBooking = () => {
   const [email, setEmail] = useState("");
   const [willComeWithPets, setWillComeWithPets] = useState(null);
   const [errors, setErrors] = useState({});
-  const [coupon, setCoupon] = useState("");
-  const [discount, setDiscount] = useState(0);
 
 
   useEffect(() => {
@@ -32,20 +30,6 @@ const TimeBooking = () => {
   const renderError = (fieldName) => (
     errors[fieldName] ? <div className="time__form-error">{errors[fieldName]}</div> : null
   );
-
-  // Function to reset form data (optional)
-    const resetFormData = () => {
-      setSelectedDate(null);
-      setSelectedDuration(null);
-      setSelectedTime(null);
-      setFirstName("");
-      setLastName("");
-      setPhone("");
-      setEmail("");
-      setWillComeWithPets(null);
-      setCoupon("");
-      setDiscount(0);
-    };
 
   return (
     <section className='time' id="time">
@@ -117,18 +101,21 @@ const TimeBooking = () => {
       {activeStep === 2 && (
          <TimeBookingVerification
          selectedDate={selectedDate}
+         setSelectedDate={setSelectedDate}
          selectedTime={selectedTime}
+         setSelectedTime={setSelectedTime}
          selectedDuration={selectedDuration}
+         setSelectedDuration={setSelectedDuration}
          firstName={firstName}
+         setFirstName={setFirstName}
          lastName={lastName}
+         setLastName={setLastName}
          phone={phone}
+         setPhone={setPhone}
          email={email}
-         coupon={coupon}
-         discount={discount}
-         setCoupon={setCoupon}
-         setDiscount={setDiscount}
+         setEmail={setEmail}
+         setWillComeWithPets={setWillComeWithPets} 
          handleBackStep={handleBackStep}
-         resetFormData={resetFormData}
          activeStep={activeStep}
          setActiveStep={setActiveStep}
        />

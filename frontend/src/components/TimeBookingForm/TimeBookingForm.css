@@ -1,2 +1,57 @@
-/* TimeBookingForm.css */
+.time__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 50%;
+    margin: 0 auto;
+  }
 
+  
+  .time__form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .time__form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .time__form-group input {
+    padding: 8px 10px;
+    border: 1px solid #918E8E;
+    border-radius: 4px;
+  }
+
+  .time__form-options {
+    display: flex;
+    gap: 20px; /* Spacing between Yes and No options */
+    margin-top: 10px;
+  }
+  
+  .time__form-options label {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .time__radio{
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  
+  .time__form-field{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .time__form-error{
+    color: red;
+  }
+
+  @media screen and (max-width: 767px) {
+    .time__form{
+        width: 90%;
+      }
+}
