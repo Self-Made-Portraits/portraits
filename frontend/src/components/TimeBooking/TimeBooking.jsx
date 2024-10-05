@@ -257,6 +257,7 @@ const TimeBooking = () => {
                     name='pets'
                     value='Yes'
                     onChange={(e) => setWillComeWithPets(e.target.value)}
+                    checked={willComeWithPets === 'Yes'} // Add checked attribute
                     required
                   />
                   Yes
@@ -268,6 +269,7 @@ const TimeBooking = () => {
                     name='pets'
                     value='No'
                     onChange={(e) => setWillComeWithPets(e.target.value)}
+                    checked={willComeWithPets === 'No'} // Add checked attribute
                     required
                   />
                   No
