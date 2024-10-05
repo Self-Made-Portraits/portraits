@@ -4,7 +4,7 @@ import Button from '../common/Button/Button'
 
 const Intro = () => {
     return (
-        <section className='intro'>
+        <section className='intro' id='intro'>
             <div className='intro__container'>
             <div className='intro__text'>
             <h1 className='intro__title'>{`No one else.\nJust you`}</h1>

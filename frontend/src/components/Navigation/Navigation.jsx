@@ -1,102 +1,105 @@
-import {React, useState} from "react";
-import { Link, useLocation } from "react-router-dom";
-import Button from "../common/Button/Button"
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import Button from "../common/Button/Button";
 import "./Navigation.css";
 
 function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
-    const location = useLocation();
-    const [active, setActive] = useState("");
-    //   console.log(activeSection)
-    // useEffect(() => {
-    //     if (location.pathname.includes("/copper") || location.pathname.includes("/nickel") || location.pathname.includes("/cobalt")) {
-    //         setActive("2");
-    //         setActiveSubMenu(true);
-    //     } else if (location.pathname === "/articles") {
-    //         setActive("3");
-    //     } else if (location.pathname === "/wesafe-the-world") {
-    //         setActive("4");
-    //     } else if (location.pathname === "/about-us") {
-    //         setActive("5");
-    //     } else if (location.pathname === "/contact-us") {
-    //         setActive("6");
-    //     } else {
-    //         setActive("");
-    //         setActiveSubMenu(false);
-    //     }
-    // }, [location]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [active, setActive] = useState("");
+  const [targetSection, setTargetSection] = useState(null);
 
+  // Function to handle closing the burger menu
+  const handleCloseBurgerMenu = () => {
+    if (isShowMenu) {
+      setIsShowMenu(false);
+    }
+  };
 
-    const handleCloseBurgerMenu = () => {
-        if (isShowMenu) {
-            setIsShowMenu(false);
-        }
-    };
+  // Scroll to a specific section by its ID when already on the main page
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const headerOffset = 65; // Adjust based on your header height
+      const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerOffset;
 
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+    handleCloseBurgerMenu(); // Close menu after scrolling
+  };
 
-      // Scroll to a specific section by its ID
-      const scrollToSection = (sectionId) => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          const headerOffset = 65; // Height of your fixed header
-          const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - headerOffset;
-      
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          });
-        }
-        handleCloseBurgerMenu(); // Close menu after scrolling
-      };
-      
-    // Handle menu button click
-const handleNavigationClick = (e, sectionId) => {
-        setActive(e.target.id);
-        scrollToSection(sectionId);
-      };
+  // Handle menu button click
+  const handleNavigationClick = (e, sectionId) => {
+    setActive(e.target.id);
+    if (location.pathname === "/portraits/") {
+      scrollToSection(sectionId); // If already on main page, scroll to the section
+    } else {
+      setTargetSection(sectionId); // Store the section ID to scroll after navigation
+      navigate("/portraits/"); // Redirect to main page
+    }
+  };
 
-    return (
-        <>
-            <button 
-                id={"1"} 
-                className={`navigation__link navigation__link_main ${activeSection === "about" ? "navigation__link_active" : null}`} 
-                onClick={(e) => handleNavigationClick(e, "about")}
-            >
-                {`How it works?`}
-            </button>
-            <button 
-                id={"2"} 
-                className={`navigation__link navigation__link_main ${activeSection === "photos" ? "navigation__link_active" : null}`} 
-                onClick={(e) => handleNavigationClick(e, "photos")}
-            >
-                {`Photo`}
-            </button>
+  // Effect to scroll to the target section after navigating to the main page
+  useEffect(() => {
+    if (location.pathname === "/portraits/" && targetSection) {
+      scrollToSection(targetSection); // Scroll to the stored section
+      setTargetSection(null); // Clear target section after scrolling
+    }
+  }, [location.pathname, targetSection]);
 
-            <button
-                id={"3"} 
-                className={`navigation__link navigation__link_main ${activeSection === "gifts" ? "navigation__link_active" : null}`} 
-                onClick={(e) => handleNavigationClick(e, "gifts")}
-            >
-                {`Gift Cards`}
-            </button>
+  // Effect to reset active state when navigating away from the main page
+  useEffect(() => {
+    if (location.pathname !== "/portraits/") {
+      setActive(""); // Reset active state
+    }
+  }, [location.pathname]);
 
-            <button 
-                id={"4"} 
-                className={`navigation__link navigation__link_main ${activeSection === "faq" ? "navigation__link_active" : null}`} 
-                onClick={(e) => handleNavigationClick(e, "faq")}
-            >
-                {`FAQ`}
-            </button>
-            <button 
-                id={"5"} 
-                className={`navigation__link navigation__link_main ${activeSection === "contact" ? "navigation__link_active" : null}`} 
-                onClick={(e) => handleNavigationClick(e, "contact")}
-            >
-                {`Contact Us`}
-            </button>
-            <Button book={true} type={"time"} value={"BOOK NOW"} />
-        </>
-    );
+  return (
+    <>
+      <button
+        id="1"
+        className={`navigation__link navigation__link_main ${activeSection === "about" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        onClick={(e) => handleNavigationClick(e, "about")}
+      >
+        How it works?
+      </button>
+      <button
+        id="2"
+        className={`navigation__link navigation__link_main ${activeSection === "photos" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        onClick={(e) => handleNavigationClick(e, "photos")}
+      >
+        Photo
+      </button>
+      <button
+        id="3"
+        className={`navigation__link navigation__link_main ${activeSection === "gifts" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        onClick={(e) => handleNavigationClick(e, "gifts")}
+      >
+        Gift Cards
+      </button>
+      <button
+        id="4"
+        className={`navigation__link navigation__link_main ${activeSection === "faq" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        onClick={(e) => handleNavigationClick(e, "faq")}
+      >
+        FAQ
+      </button>
+      <button
+        id="5"
+        className={`navigation__link navigation__link_main ${activeSection === "contact" && location.pathname === "/portraits/" ? "navigation__link_active" : ""}`}
+        onClick={(e) => handleNavigationClick(e, "contact")}
+      >
+        Contact Us
+      </button>
+
+      {/* BOOK NOW button should navigate to a different page */}
+      <Button book={true} type={"time"} value={"BOOK NOW"} onClick={() => navigate("/book-now")} />
+    </>
+  );
 }
 
 export default Navigation;
