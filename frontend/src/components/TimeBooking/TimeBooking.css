@@ -417,6 +417,13 @@
   cursor: pointer;
 }
 
+.time__timer {
+  font-size: 18px;
+  color: black;
+  margin: 20px 0;
+}
+
+
 @media screen and (max-width: 1200px) {
   .time__confirmation-text{
     font-size: 16px;
