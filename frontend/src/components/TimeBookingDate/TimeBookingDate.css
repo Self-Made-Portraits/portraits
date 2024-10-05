@@ -13,14 +13,57 @@
     color: #fff; /* Optional: Change text color for better contrast */
 }
 
+
+/* Styling for Today’s Date */
+.react-calendar__tile--now {
+  background-color: #ffeb3b; /* Light yellow background */
+  color: #918E8E; /* Dark text color */
+  font-weight: bold;
+}
+
 .react-calendar__tile{
   color: black;
 }
+
+/* Styling for Past Days */
+.react-calendar__tile--past-day {
+  background-color: #f0f0f0; /* Light gray for past days */
+  color: darkgray; /* Dimmed text */
+  cursor: not-allowed; /* Not allowed cursor */
+}
+
+.react-calendar__month-view__days__day--weekend{
+  color: red;
+}
+
+/* Styling for Neighboring Month Days */
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #ccc; /* Dimmed text for neighboring month days */
+  background-color: #fafafa;
+}
+
+
 /* Custom styles for the active date tile */
 .react-calendar__tile--active {
   background-color: #ff9900; /* Change to your desired background color */
   color: white; /* Change to your desired text color */
   font-weight: bold; /* Optional: Emphasize the selected date */
+}
+
+/* Style for the entire month and year container */
+.react-calendar__navigation__label {
+  font-size: 16px;         /* Increase font size */
+  color: #2B2B2B;          /* Change text color */
+  font-weight: bold;       /* Make text bold */
+}
+.react-calendar__navigation__arrow{
+  color: #2B2B2B;   
+}
+.react-calendar__navigation__next-button{
+  color: #2B2B2B; 
+}
+.react-calendar__navigation__next2-button{
+  color: #2B2B2B; 
 }
 
   /* Container for Duration Buttons, Calendar, and Time Slots */

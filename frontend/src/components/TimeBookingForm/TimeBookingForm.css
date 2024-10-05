@@ -53,9 +53,10 @@
   @media screen and (max-width: 767px) {
     .time__form{
         width: 90%;
-      }
+    }
 
     .time__form-group input {
         min-height: 30px;
-      }     
+        padding: 4px 5px;
+    }     
 }
