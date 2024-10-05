@@ -12,7 +12,7 @@ function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
   // Function to handle closing the burger menu
   const handleCloseBurgerMenu = () => {
     if (isShowMenu) {
-      setIsShowMenu(false);
+      setIsShowMenu(false); // Close the burger menu
     }
   };
 
@@ -96,8 +96,16 @@ function Navigation({ activeSection, isShowMenu, setIsShowMenu }) {
         Contact Us
       </button>
 
-      {/* BOOK NOW button should navigate to a different page */}
-      <Button book={true} type={"time"} value={"BOOK NOW"} onClick={() => navigate("/book-now")} />
+      {/* BOOK NOW button should navigate to a different page and close menu */}
+      <Button
+        book={true}
+        type={"time"}
+        value={"BOOK NOW"}
+        onClick={() => {
+          handleCloseBurgerMenu(); // Close the menu first
+          navigate("/book-now");   // Then navigate to the booking page
+        }}
+      />
     </>
   );
 }
