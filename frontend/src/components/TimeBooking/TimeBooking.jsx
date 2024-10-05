@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import './TimeBooking.css';
 import TimeBookingDate from '../TimeBookingDate/TimeBookingDate';
 import TimeBookingForm from '../TimeBookingForm/TimeBookingForm';
@@ -17,11 +16,11 @@ const TimeBooking = () => {
   const [willComeWithPets, setWillComeWithPets] = useState(null);
   const [errors, setErrors] = useState({});
 
-
+  // Scroll to the top every time the active step changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-  
+  }, [activeStep]);
+
   const handleBackStep = () => {
     setActiveStep(activeStep - 1);
     setErrors({}); // Reset errors when moving back
@@ -59,14 +58,14 @@ const TimeBooking = () => {
       {/* Step 1: Session Selection */}
       {activeStep === 0 && (
         <TimeBookingDate 
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        selectedDuration={selectedDuration}
-        setSelectedDuration={setSelectedDuration}
-        selectedTime={selectedTime}
-        setSelectedTime={setSelectedTime}
-        setActiveStep={setActiveStep}
-        setErrors={setErrors}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          selectedDuration={selectedDuration}
+          setSelectedDuration={setSelectedDuration}
+          selectedTime={selectedTime}
+          setSelectedTime={setSelectedTime}
+          setActiveStep={setActiveStep}
+          setErrors={setErrors}
         />
       )}
 
@@ -99,29 +98,30 @@ const TimeBooking = () => {
 
       {/* Step 3: Final Confirmation */}
       {activeStep === 2 && (
-         <TimeBookingVerification
-         selectedDate={selectedDate}
-         setSelectedDate={setSelectedDate}
-         selectedTime={selectedTime}
-         setSelectedTime={setSelectedTime}
-         selectedDuration={selectedDuration}
-         setSelectedDuration={setSelectedDuration}
-         firstName={firstName}
-         setFirstName={setFirstName}
-         lastName={lastName}
-         setLastName={setLastName}
-         phone={phone}
-         setPhone={setPhone}
-         email={email}
-         setEmail={setEmail}
-         setWillComeWithPets={setWillComeWithPets} 
-         handleBackStep={handleBackStep}
-         activeStep={activeStep}
-         setActiveStep={setActiveStep}
-       />
+        <TimeBookingVerification
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          selectedTime={selectedTime}
+          setSelectedTime={setSelectedTime}
+          selectedDuration={selectedDuration}
+          setSelectedDuration={setSelectedDuration}
+          firstName={firstName}
+          setFirstName={setFirstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          phone={phone}
+          setPhone={setPhone}
+          email={email}
+          setEmail={setEmail}
+          setWillComeWithPets={setWillComeWithPets} 
+          handleBackStep={handleBackStep}
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+        />
       )}
     </section>
   );
 };
 
 export default TimeBooking;
+

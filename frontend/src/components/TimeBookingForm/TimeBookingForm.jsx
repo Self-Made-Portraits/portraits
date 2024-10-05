@@ -19,7 +19,7 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
     else if (!isValidPhone(phone)) validationErrors.phone = "- phone number must have only digits";
     if (!email.trim()) validationErrors.email = "- email is required";
     else if (!isValidEmail(email)) validationErrors.email = "- invalid email format";
-    if (willComeWithPets === null) validationErrors.willComeWithPets = "- please select an option";
+    if (willComeWithPets === null) validationErrors.willComeWithPets = "- select an option";
 
     setErrors(validationErrors);
     return Object.keys(validationErrors).length === 0;
@@ -115,7 +115,7 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
         </div>
 
         <div className='time__form-group'>
-          <label className='time__form-field'  htmlFor='lastName'>Last Name&nbsp; {renderError('lastName')}</label>
+          <label className='time__form-field' htmlFor='lastName'>Last Name&nbsp; {renderError('lastName')}</label>
           <input
             id='lastName'
             type='text'
@@ -152,7 +152,10 @@ const TimeBookingForm = ({ setErrors, setActiveStep, selectedDate, selectedTime,
 
         {/* Will you come with pets? */}
         <div className='time__form-group'>
-          <label className='time__form-field'>Will you come with pets?&nbsp; {renderError('willComeWithPets')}</label>
+          <label className='time__form-field'>Will you come with pets?&nbsp; <div className='time__form-field-pets-desktop'>{renderError('willComeWithPets')}</div></label>
+          <span className='time__form-field-pets-mobile'>
+          {renderError('willComeWithPets')}
+        </span>
           <div className='time__form-options'>
             <label className='time__form-field'>
               <input

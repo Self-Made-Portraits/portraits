@@ -50,6 +50,23 @@
     color: red;
   }
 
+  .time__form-field-pets-desktop{
+    margin: 0; 
+    padding: 0;
+  }
+  .time__form-field-pets-mobile{
+    display: none;
+  }
+
+  @media screen and (max-width: 800px) {
+  .time__form-field-pets-desktop{
+    display: none;
+  }
+  .time__form-field-pets-mobile{
+    display: block;
+  }
+  }
+
   @media screen and (max-width: 767px) {
     .time__form{
         width: 90%;
@@ -59,4 +76,23 @@
         min-height: 30px;
         padding: 4px 5px;
     }     
+}
+
+
+@media screen and (max-width: 476px) {
+  .time__form-error{
+    margin-top: 2px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .time__form-group label{
+    font-size: 12px;
+  }
+
+  .time__form-error{
+    margin-top: 2px;
+    font-size: 12px;
+  }
 }
