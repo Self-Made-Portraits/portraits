@@ -49,6 +49,10 @@ const TimeBooking = () => {
   // Calculate the final price based on the duration
   const finalPrice = (selectedDuration === 15 ? 30 : 60) - discount;
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+  
   // Handle form validation
   useEffect(() => {
     setIsFormValid(
