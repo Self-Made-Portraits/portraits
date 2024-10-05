@@ -424,6 +424,15 @@
   margin: 20px 0;
 }
 
+.time__form-field{
+  display: flex;
+  flex-direction: row;
+}
+
+.time__form-error{
+  color: red;
+
+}
 
 @media screen and (max-width: 1200px) {
   .time__confirmation-text{

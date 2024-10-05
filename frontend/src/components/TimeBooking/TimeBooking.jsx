@@ -15,6 +15,7 @@ const TimeBooking = () => {
   const [email, setEmail] = useState("");
   const [willComeWithPets, setWillComeWithPets] = useState(null);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [errors, setErrors] = useState({}); // New state for validation errors
 
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
@@ -77,9 +78,24 @@ const TimeBooking = () => {
     setActiveStep(activeStep - 1);
   };
 
-  // Handle Form Submission in Step 2
+    // Validate fields before submission
+    const validateForm = () => {
+      const validationErrors = {};
+      if (!firstName.trim()) validationErrors.firstName = ` - first name is required`;
+      if (!lastName.trim()) validationErrors.lastName = "- last name is required";
+      if (!phone.trim()) validationErrors.phone = "- phone number is required";
+      if (!email.trim()) validationErrors.email = "- email is required";
+      if (willComeWithPets === null) validationErrors.willComeWithPets = "- please select an option";
+  
+      setErrors(validationErrors);
+      console.log("Validation Errors:", validationErrors);
+      return Object.keys(validationErrors).length === 0;
+    };
+
+  // Existing form submission function
+  // Existing form submission function with validation logic
   const handleFormSubmit = async () => {
-    if (isFormValid) {
+    if (validateForm()) {
       const bookingData = {
         date: selectedDate?.toLocaleDateString(),
         time: selectedTime,
@@ -103,15 +119,16 @@ const TimeBooking = () => {
         const result = await response.json();
         console.log('Booking data sent successfully:', result);
 
-        // Move to Step 3 (Done) after successful form submission
-        setActiveStep(2);
+        setActiveStep(2); // Move to Step 3 (Done) after successful form submission
       } catch (error) {
         console.error('Error sending booking data:', error);
       }
-    } else {
-      alert('Please fill all fields correctly.');
     }
   };
+
+  const renderError = (fieldName) => (
+    errors[fieldName] ? <div className="time__form-error">{errors[fieldName]}</div> : null
+  );
 
   // Handle applying a coupon code
   const handleApplyCoupon = () => {
@@ -256,7 +273,7 @@ const TimeBooking = () => {
 
           <form className='time__form'>
             <div className='time__form-group'>
-              <label htmlFor='firstName'>First Name</label>
+              <label className='time__form-field' htmlFor='firstName'>First Name&nbsp; {renderError('firstName')}</label>
               <input
                 id='firstName'
                 type='text'
@@ -267,7 +284,7 @@ const TimeBooking = () => {
             </div>
 
             <div className='time__form-group'>
-              <label htmlFor='lastName'>Last Name</label>
+              <label className='time__form-field'  htmlFor='lastName'>Last Name&nbsp; {renderError('lastName')}</label>
               <input
                 id='lastName'
                 type='text'
@@ -278,7 +295,7 @@ const TimeBooking = () => {
             </div>
 
             <div className='time__form-group'>
-              <label htmlFor='phone'>Phone</label>
+              <label className='time__form-field'  htmlFor='phone'>Phone&nbsp; {renderError('phone')}</label>
               <input
                 id='phone'
                 type='tel'
@@ -289,7 +306,7 @@ const TimeBooking = () => {
             </div>
 
             <div className='time__form-group'>
-              <label htmlFor='email'>Email</label>
+              <label className='time__form-field'  htmlFor='email'>Email&nbsp; {renderError('email')}</label>
               <input
                 id='email'
                 type='email'
@@ -301,9 +318,9 @@ const TimeBooking = () => {
 
             {/* Will you come with pets? */}
             <div className='time__form-group'>
-              <label>Will you come with pets?</label>
+              <label className='time__form-field'>Will you come with pets?&nbsp; {renderError('willComeWithPets')}</label>
               <div className='time__form-options'>
-                <label>
+                <label className='time__form-field'>
                   <input
                     type='radio'
                     className='time__radio'
@@ -332,11 +349,10 @@ const TimeBooking = () => {
           </form>
 
           <div className='time__button-container'>
-            <button
+          <button
               type='button'
               className={`time__next-step-button ${isFormValid ? 'time__next-step-button_active' : ''}`}
               onClick={handleFormSubmit}
-              disabled={!isFormValid}
             >
               Next
             </button>
