@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './TimeBooking.css';
@@ -14,6 +14,7 @@ const TimeBooking = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [willComeWithPets, setWillComeWithPets] = useState(null);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const [coupon, setCoupon] = useState("");
   const [discount, setDiscount] = useState(0);
@@ -42,55 +43,70 @@ const TimeBooking = () => {
   };
 
   const timeSlots = generateTimeSlots();
-  const isValidDate = selectedDate && new Date(selectedDate).setHours(0, 0, 0, 0) >= today;
-
-  const handleNextStep = () => {
-    if (isValidDate && selectedDuration && selectedTime) {
-      setActiveStep(1);
-    }
-  };
-
-    const handleBackStep = () => {
-      setActiveStep(activeStep - 1); // Decrease the step to move to the previous one
-    };
     // Calculate the final price based on the duration
     const finalPrice = selectedDuration === 15 ? 30 : 60;
 
     // Handle form submission in Step 2
-    const handleFormSubmit = async () => {
-      // Check that all fields are filled
-      if (firstName && lastName && phone && email) {
-        const bookingData = {
-          date: selectedDate?.toLocaleDateString(),
-          time: selectedTime,
-          duration: selectedDuration,
-          firstName,
-          lastName,
-          phone,
-          email,
-          willComeWithPets
-        };
-  
-        try {
-          // Send data to the server
-          const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(bookingData),
-          });
-  
-          const result = await response.json();
-          console.log('Booking data sent successfully:', result);
-  
-          // Move to Step 3 (Done) after successful form submission
-          setActiveStep(2);
-        } catch (error) {
-          console.error('Error sending booking data:', error);
-        }
+  // Handle Form Submission in Step 2
+  useEffect(() => {
+    setIsFormValid(
+      firstName.trim() !== '' &&
+      lastName.trim() !== '' &&
+      phone.trim() !== '' &&
+      email.trim() !== '' &&
+      willComeWithPets !== null
+    );
+  }, [firstName, lastName, phone, email, willComeWithPets]);
+
+  // Step 1: Validate if the selected date, duration, and time are valid
+  const isValidDate = selectedDate && new Date(selectedDate).setHours(0, 0, 0, 0) >= today;
+
+  // Handle Next Step Button in Step 1
+  const handleNextStep = () => {
+    if (isValidDate && selectedDuration && selectedTime) {
+      setActiveStep(1); // Move to Step 2
+    }
+  };
+
+  const handleBackStep = () => {
+    setActiveStep(activeStep - 1); // Go back to the previous step
+  };
+
+  // Handle Form Submission in Step 2
+  const handleFormSubmit = async () => {
+    if (isFormValid) {
+      const bookingData = {
+        date: selectedDate?.toLocaleDateString(),
+        time: selectedTime,
+        duration: selectedDuration,
+        firstName,
+        lastName,
+        phone,
+        email,
+        willComeWithPets
+      };
+
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(bookingData),
+        });
+
+        const result = await response.json();
+        console.log('Booking data sent successfully:', result);
+
+        // Move to Step 3 (Done) after successful form submission
+        setActiveStep(2);
+      } catch (error) {
+        console.error('Error sending booking data:', error);
       }
-    };
+    } else {
+      alert('Please fill all fields correctly.');
+    }
+  };
 
     // Handle applying a coupon code
     const handleApplyCoupon = () => {
@@ -175,96 +191,101 @@ const TimeBooking = () => {
       )}
       {activeStep === 1 && (
         <>
-        <div className='time__confirmation'>
-        <button type='button' className='time__back-button' onClick={handleBackStep}>
-            Back
-          </button>
-          <p className='time__confirmation-text'>
-            Your selected date and time is:<br/> <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong> for <strong>{selectedDuration} minutes</strong>.
-          </p>
-        </div>
-                  <form className='time__form'>
-                  <div className='time__form-group'>
-                    <label htmlFor='firstName'>First Name</label>
-                    <input
-                      id='firstName'
-                      type='text'
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                      required
-                    />
-                  </div>
-      
-                  <div className='time__form-group'>
-                    <label htmlFor='lastName'>Last Name</label>
-                    <input
-                      id='lastName'
-                      type='text'
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      required
-                    />
-                  </div>
-      
-                  <div className='time__form-group'>
-                    <label htmlFor='phone'>Phone</label>
-                    <input
-                      id='phone'
-                      type='tel'
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
-                    />
-                  </div>
-      
-                  <div className='time__form-group'>
-                    <label htmlFor='email'>Email</label>
-                    <input
-                      id='email'
-                      type='email'
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
+          <div className='time__confirmation'>
+            <button type='button' className='time__back-button' onClick={() => setActiveStep(0)}>
+              Back
+            </button>
+            <p className='time__confirmation-text'>
+              Your selected date and time is:<br /> <strong>{new Date().toLocaleDateString()}</strong> at <strong>12:00</strong> for <strong>40 minutes</strong>.
+            </p>
+          </div>
 
-                    {/* New Field: Will you come with pets? */}
-                <div className='time__form-group'>
-                  <label>Will you come with pets?</label>
-                  <div className='time__form-options'>
-                    <label>
-                      <input
-                        type='radio'
-                        name='pets'
-                        value='Yes'
-                        onChange={(e) => setWillComeWithPets(e.target.value)}
-                        required
-                      />
-                      Yes
-                    </label>
-                    <label>
-                      <input
-                        type='radio'
-                        name='pets'
-                        value='No'
-                        onChange={(e) => setWillComeWithPets(e.target.value)}
-                        required
-                      />
-                      No
-                    </label>
-                  </div>
-                  </div>
-                </form>
-                <div className='time__button-container'>
-                <button
-                type='button'
-                className='time__next-step-button time__next-step-button_active'
-                onClick={handleFormSubmit}
-              >
-                Next
-              </button>
+          {/* Form Section */}
+          <form className='time__form'>
+            <div className='time__form-group'>
+              <label htmlFor='firstName'>First Name</label>
+              <input
+                id='firstName'
+                type='text'
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className='time__form-group'>
+              <label htmlFor='lastName'>Last Name</label>
+              <input
+                id='lastName'
+                type='text'
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className='time__form-group'>
+              <label htmlFor='phone'>Phone</label>
+              <input
+                id='phone'
+                type='tel'
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className='time__form-group'>
+              <label htmlFor='email'>Email</label>
+              <input
+                id='email'
+                type='email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+
+            {/* Will you come with pets? */}
+            <div className='time__form-group'>
+              <label>Will you come with pets?</label>
+              <div className='time__form-options'>
+                <label>
+                  <input
+                    type='radio'
+                    name='pets'
+                    value='Yes'
+                    onChange={(e) => setWillComeWithPets(e.target.value)}
+                    required
+                  />
+                  Yes
+                </label>
+                <label>
+                  <input
+                    type='radio'
+                    name='pets'
+                    value='No'
+                    onChange={(e) => setWillComeWithPets(e.target.value)}
+                    required
+                  />
+                  No
+                </label>
               </div>
-                </>
+            </div>
+          </form>
+
+          {/* Button Container */}
+          <div className='time__button-container'>
+          <button
+              type='button'
+              className={`time__next-step-button ${isFormValid ? 'time__next-step-button_active' : ''}`}
+              onClick={handleFormSubmit}
+              disabled={!isFormValid} // Disable button until the form is valid
+            >
+              Next
+            </button>
+          </div>
+        </>
       )}
 
       {activeStep === 0 && (
