@@ -54,4 +54,8 @@
     .time__form{
         width: 90%;
       }
+
+    .time__form-group input {
+        min-height: 30px;
+      }     
 }
