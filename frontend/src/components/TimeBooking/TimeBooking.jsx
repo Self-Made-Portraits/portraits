@@ -115,19 +115,28 @@ const TimeBooking = () => {
     setErrors({}); // Reset errors when moving back
   };
 
-    // Validate fields before submission
-    const validateForm = () => {
-      const validationErrors = {};
-      if (!firstName.trim()) validationErrors.firstName = ` - first name is required`;
-      if (!lastName.trim()) validationErrors.lastName = "- last name is required";
-      if (!phone.trim()) validationErrors.phone = "- phone number is required";
-      if (!email.trim()) validationErrors.email = "- email is required";
-      if (willComeWithPets === null) validationErrors.willComeWithPets = "- please select an option";
-  
-      setErrors(validationErrors);
-      console.log("Validation Errors:", validationErrors);
-      return Object.keys(validationErrors).length === 0;
-    };
+    // Function to validate email format
+    const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    // Function to validate phone format
+    const isValidPhone = (phone) => /^\d+$/.test(phone);
+
+
+  // Validate fields before submission
+  const validateForm = () => {
+    const validationErrors = {};
+    if (!firstName.trim()) validationErrors.firstName = "- first name is required";
+    if (!lastName.trim()) validationErrors.lastName = "- last name is required";
+    if (!phone.trim()) validationErrors.phone = "- phone number is required";
+    else if (!isValidPhone(phone)) validationErrors.phone = "- phone number must have only digits";
+    if (!email.trim()) validationErrors.email = "- email is required";
+    else if (!isValidEmail(email)) validationErrors.email = "- invalid email format";
+    if (willComeWithPets === null) validationErrors.willComeWithPets = "- please select an option";
+
+    setErrors(validationErrors);
+    return Object.keys(validationErrors).length === 0;
+  };
+
 
 
   // Existing form submission function with validation logic
@@ -161,13 +170,26 @@ const TimeBooking = () => {
       }
     }
   };
-  
+
+
     // Handle form field changes to clear specific error messages
     useEffect(() => {
       if (firstName.trim()) setErrors((prevErrors) => ({ ...prevErrors, firstName: '' }));
       if (lastName.trim()) setErrors((prevErrors) => ({ ...prevErrors, lastName: '' }));
+      if (phone.trim() && isValidPhone(phone)) setErrors((prevErrors) => ({ ...prevErrors, phone: '' }));
+      if (email.trim() && isValidEmail(email)) setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
+      if (willComeWithPets !== null) setErrors((prevErrors) => ({ ...prevErrors, willComeWithPets: '' }));
+    }, [firstName, lastName, phone, email, willComeWithPets]);
+
+    // Handle form field changes to clear specific error messages
+    useEffect(() => {
+      const validationErrors = {};
+
+      if (firstName.trim()) setErrors((prevErrors) => ({ ...prevErrors, firstName: '' }));
+      if (lastName.trim()) setErrors((prevErrors) => ({ ...prevErrors, lastName: '' }));
       if (phone.trim()) setErrors((prevErrors) => ({ ...prevErrors, phone: '' }));
       if (email.trim()) setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
+      else if (!isValidEmail(email)) validationErrors.email = "Invalid email format";
       if (willComeWithPets !== null) setErrors((prevErrors) => ({ ...prevErrors, willComeWithPets: '' }));
     }, [firstName, lastName, phone, email, willComeWithPets])
 
@@ -325,6 +347,7 @@ const TimeBooking = () => {
                 id='firstName'
                 type='text'
                 value={firstName}
+                placeholder="John"
                 onChange={(e) => setFirstName(e.target.value)}
                 required
               />
@@ -336,6 +359,7 @@ const TimeBooking = () => {
                 id='lastName'
                 type='text'
                 value={lastName}
+                placeholder="Smith"
                 onChange={(e) => setLastName(e.target.value)}
                 required
               />
@@ -347,6 +371,7 @@ const TimeBooking = () => {
                 id='phone'
                 type='tel'
                 value={phone}
+                placeholder="07123456789" // Placeholder for British phone format
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
@@ -358,6 +383,7 @@ const TimeBooking = () => {
                 id='email'
                 type='email'
                 value={email}
+                placeholder="example@domain.com"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
