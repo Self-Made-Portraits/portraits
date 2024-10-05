@@ -449,12 +449,36 @@
   .time__duration-buttons{
     flex-direction: row;
   }
+
+  .time__back-button{
+    width: 80px;
+    font-size: 16px;
+  }
+  .time__next-step{
+    justify-content: center;
+  }
+
+  .time__next-step-button {
+    width: 240px;
+  }
+
+  .time__button-container{
+    justify-content: center;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .time__number{
     font-size: 14px;
 }
+
+  .time__step{
+    width: 90%;
+  }
+  
+  .time__confirmation{
+    width: 90%;
+  }
 
   .time__line{
     width: 70px
