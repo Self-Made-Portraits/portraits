@@ -9,9 +9,9 @@ const TimeBooking = () => {
   const [selectedDuration, setSelectedDuration] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
     // Error states for Step 1
-    const [durationError, setDurationError] = useState('');
-    const [dateError, setDateError] = useState('');
-    const [timeError, setTimeError] = useState('');
+  const [durationError, setDurationError] = useState('');
+  const [dateError, setDateError] = useState('');
+  const [timeError, setTimeError] = useState('');
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -71,6 +71,12 @@ const TimeBooking = () => {
 
   const isValidDate = selectedDate && new Date(selectedDate).setHours(0, 0, 0, 0) >= today;
 
+    // Reset error messages when a user makes a new selection
+    useEffect(() => {
+      if (selectedDuration) setDurationError('');
+      if (selectedDate) setDateError('');
+      if (selectedTime) setTimeError('');
+    }, [selectedDuration, selectedDate, selectedTime]);
   // Handle Step Navigation
   const handleNextStep = () => {
     let hasError = false;
@@ -123,7 +129,7 @@ const TimeBooking = () => {
       return Object.keys(validationErrors).length === 0;
     };
 
-  // Existing form submission function
+
   // Existing form submission function with validation logic
   const handleFormSubmit = async () => {
     if (validateForm()) {
@@ -149,13 +155,21 @@ const TimeBooking = () => {
 
         const result = await response.json();
         console.log('Booking data sent successfully:', result);
-
         setActiveStep(2); // Move to Step 3 (Done) after successful form submission
       } catch (error) {
         console.error('Error sending booking data:', error);
       }
     }
   };
+  
+    // Handle form field changes to clear specific error messages
+    useEffect(() => {
+      if (firstName.trim()) setErrors((prevErrors) => ({ ...prevErrors, firstName: '' }));
+      if (lastName.trim()) setErrors((prevErrors) => ({ ...prevErrors, lastName: '' }));
+      if (phone.trim()) setErrors((prevErrors) => ({ ...prevErrors, phone: '' }));
+      if (email.trim()) setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
+      if (willComeWithPets !== null) setErrors((prevErrors) => ({ ...prevErrors, willComeWithPets: '' }));
+    }, [firstName, lastName, phone, email, willComeWithPets])
 
   const renderError = (fieldName) => (
     errors[fieldName] ? <div className="time__form-error">{errors[fieldName]}</div> : null
