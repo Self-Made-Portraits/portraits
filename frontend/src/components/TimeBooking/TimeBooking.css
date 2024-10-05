@@ -415,3 +415,51 @@
 .time__form-options input[type='radio'] {
   margin-right: 8px;
 }
+
+
+@media screen and (max-width: 1023px) {
+  .time{
+    height: 100%;
+    margin-bottom: 30px;
+  }
+  /* Container for Duration Buttons, Calendar, and Time Slots */
+  .time__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 50px;
+  }
+  .time__duration-buttons{
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .time__number{
+    font-size: 14px;
+}
+
+  .time__line{
+    width: 70px
+  }
+  .time__list{
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .time__slots-container{
+    margin: 0 auto;
+  }
+  .time__slots{
+    max-width: 300px;
+  }
+  .time__slot{
+    padding: 5px 10px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .time__line{
+    width: 60px
+  }
+}
