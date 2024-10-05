@@ -8,6 +8,10 @@ const TimeBooking = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedDuration, setSelectedDuration] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
+    // Error states for Step 1
+    const [durationError, setDurationError] = useState('');
+    const [dateError, setDateError] = useState('');
+    const [timeError, setTimeError] = useState('');
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -69,13 +73,40 @@ const TimeBooking = () => {
 
   // Handle Step Navigation
   const handleNextStep = () => {
-    if (isValidDate && selectedDuration && selectedTime) {
-      setActiveStep(1);
+    let hasError = false;
+
+    // Validate Duration
+    if (!selectedDuration) {
+      setDurationError('Please select a session duration');
+      hasError = true;
     }
+
+    // Validate Date
+    if (!selectedDate || !isValidDate) {
+      setDateError('Please select a valid date');
+      hasError = true;
+    }
+
+    // Validate Time Slot
+    if (!selectedTime) {
+      setTimeError('Please select a time slot');
+      hasError = true;
+    }
+
+    // If there are no errors, proceed to the next step
+    if (!hasError) {
+      setActiveStep(1);
+      setErrors({})
+    }
+    // if (isValidDate && selectedDuration && selectedTime) {
+    //   setActiveStep(1);
+    //   setErrors({});  // Reset errors on moving to the next step
+    // }
   };
 
   const handleBackStep = () => {
     setActiveStep(activeStep - 1);
+    setErrors({}); // Reset errors when moving back
   };
 
     // Validate fields before submission
@@ -222,9 +253,11 @@ const TimeBooking = () => {
                   {duration.label}
                 </button>
               ))}
+              {durationError && <p className='time__error-message-duration'>{durationError}</p>}
             </div>
 
             <div className='time__calendar'>
+            {dateError && <p className='time__error-message'>{dateError}</p>}
               <Calendar onChange={setSelectedDate} value={selectedDate} />
             </div>
 
@@ -232,6 +265,7 @@ const TimeBooking = () => {
               <div className='time__slots'>
                 <h2>Available Time Slots</h2>
                 <ul className='time__list'>
+                {timeError && <p className='time__error-message'>{timeError}</p>} 
                   {timeSlots.map((time, index) => (
                     <li
                       key={index}
@@ -247,10 +281,9 @@ const TimeBooking = () => {
           </div>
 
           <div className='time__next-step'>
-            <button
+          <button
               className={`time__next-step-button ${isValidDate && selectedDuration && selectedTime ? 'time__next-step-button_active' : ''}`}
               onClick={handleNextStep}
-              disabled={!isValidDate || !selectedDuration || !selectedTime}
             >
               Next
             </button>
@@ -369,7 +402,6 @@ const TimeBooking = () => {
             </button>
             <h2 className='time__confirmation-subtitle'>Booking Confirmation</h2>
           </div>
-
           <div className='time__confirmation-final'>
             {/* Display the Timer */}
             <p className='time__timer'>
