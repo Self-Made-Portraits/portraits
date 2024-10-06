@@ -78,7 +78,8 @@ const GiftBooking = () => {
         .map(
           (item) => (
             <span key={item.duration}>
-              <strong>{item.quantity}gift{item.quantity > 1 ? 's' : ''}</strong>  for <strong>{item.duration}</strong>
+              <br/>
+              <strong>{item.quantity} gift{item.quantity > 1 ? 's' : ''}</strong>  for <strong>{item.duration}</strong>
             </span>
           )
         )
@@ -205,26 +206,9 @@ const GiftBooking = () => {
                   >
                     {label} - £{price}
                   </div>
-
                   {/* Quantity Selection for each Duration */}
                   <div className='gift-booking__quantity-container'>
-                    <input
-                      className='gift-booking__quantity-input'
-                      type='number'
-                      value={quantity[label] || 0}
-                      readOnly
-                    />
-                    <div className='gift-booking__quantity-buttons'>
-                      <button
-                        type='button'
-                        className='gift-booking__quantity-button'
-                        onClick={() => setQuantity((prev) => ({
-                          ...prev,
-                          [label]: (prev[label] || 0) + 1
-                        }))}
-                      >
-                        +
-                      </button>
+                                        {/* <div className='gift-booking__quantity-buttons'> */}
                       <button
                         type='button'
                         className='gift-booking__quantity-button'
@@ -235,9 +219,25 @@ const GiftBooking = () => {
                       >
                         -
                       </button>
+                    <input
+                      className='gift-booking__quantity-input'
+                      type='number'
+                      value={quantity[label] || 0}
+                      readOnly
+                    />
+                      <button
+                        type='button'
+                        className='gift-booking__quantity-button'
+                        onClick={() => setQuantity((prev) => ({
+                          ...prev,
+                          [label]: (prev[label] || 0) + 1
+                        }))}
+                      >
+                        +
+                    </button>
                     </div>
                   </div>
-                </div>
+                // </div>
               ))}
             </div>
 
