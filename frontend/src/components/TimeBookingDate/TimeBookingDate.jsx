@@ -23,7 +23,9 @@ const TimeBookingDate = ({setErrors, setActiveStep, selectedDate, setSelectedDat
       }, [selectedDuration, selectedDate, selectedTime]);
 
   const durations = [
-    { label: '40 mins', value: 40 },
+    { label: '60 mins', value: 60 },
+    { label: '45 mins', value: 45 },
+    { label: '30 mins', value: 30 },
     { label: '15 mins', value: 15 }
   ];
 

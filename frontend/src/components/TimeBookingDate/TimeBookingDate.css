@@ -227,13 +227,16 @@
     .time__duration-buttons{
       margin-top: 10px; 
       flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
     }
 
     
   .time__error-message-duration{
     margin: 0;
     top: -25px;
-    left: -10px;
+    left: 20%;
     width: 250px;
    } 
   }
@@ -257,4 +260,31 @@
   .time__list{
     grid-template-columns: repeat(4, 1fr);
   }
+
+  .time__error-message{
+    left: 25%;
+   }
+
+  .time__duration-buttons{
+    margin-top: 20px; 
+  }
+  .time__duration-button {
+    width: 60px;
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .time__duration-button {
+    width: 50px;
+    height: 40px;
+  }
+  .time__error-message-duration{
+    left: 10%;
+    width: 240px;
+   }
+   
+  .time__error-message{
+    left: 22%;
+   } 
 }
