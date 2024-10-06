@@ -13,12 +13,22 @@
   text-align: center;
 }
 
+
 .button__book-time{
    background-color: #FF9900;
    color: white;
 }
 
+.button__book-time:hover {
+  background-color: #e68900;
+}
+
 .button__book-gift{
     background-color: white;
     color: black;
+}
+
+.button__book-gift:hover {
+  background-color: #918E8E;
+  color: white;
 }
