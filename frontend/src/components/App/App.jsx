@@ -5,7 +5,7 @@ import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
 import Main from "../Main/Main"
 import TimeBooking from "../TimeBooking/TimeBooking"
-import GiftBooking from "../TimeBooking/TimeBooking"
+import GiftBooking from "../GiftBooking/GiftBooking"
 
 function App() {
   const [activeSection, setActiveSection] = useState("1");
