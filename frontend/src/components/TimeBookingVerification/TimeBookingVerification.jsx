@@ -1,6 +1,10 @@
 // TimeBookingVerification.jsx
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { formatTime, transactionTimer } from '../../utils/constants';
 import './TimeBookingVerification.css';
+// TimeBookingVerification.jsx
+
+
 
 const TimeBookingVerification = ({
   selectedDate,
@@ -68,34 +72,13 @@ const finalPrice = (() => {
       };
 
     // Handle Timer for Step 3
-    useEffect(() => {
-        let timer;
-    
-        if (activeStep === 2) {
-          setRemainingTime(600); // Reset to 10 minutes
-          timer = setInterval(() => {
-            setRemainingTime((prevTime) => {
-              if (prevTime <= 1) {
-                clearInterval(timer);
-                alert('Time is up! You will be redirected to the first step.');
-                setActiveStep(0); // Redirect to Step 1
-                resetFormData();  // Optional: Reset all form data
-                return 0;
-              }
-              return prevTime - 1;
-            });
-          }, 1000);
-        }
-    
-        return () => clearInterval(timer); // Cleanup the timer when component unmounts or step changes
-      }, [activeStep]);
 
-      const formatTime = (time) => {
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-        return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
-      };
-      
+    useEffect(() => {
+      const cleanup = transactionTimer(activeStep, setActiveStep, setRemainingTime)
+  
+      // Cleanup interval on component unmount or activeStep change
+      return cleanup;
+    }, [activeStep]);
 
   return (
     <>

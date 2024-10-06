@@ -256,6 +256,7 @@
   .gift-booking__quantity-button:hover{
     background-color: #e68900;
   }
+
   @media screen and (max-width: 800px) {
   .gift-booking__form-field-pets-desktop{
     display: none;
