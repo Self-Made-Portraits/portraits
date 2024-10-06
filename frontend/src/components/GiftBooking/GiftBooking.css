@@ -48,11 +48,13 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 100%;
   /* margin-bottom: 20px; */
 }
 
 .gift-booking__duration-row{
   width: 100%;
+  height: 100%;
 }
 
 /* Quantity Button Styling */
@@ -262,7 +264,10 @@
     font-weight: bold;
     margin-left: 10px;
     color: white;
+    width: 20px;
+    height: 20px;
   }
+
   .gift-booking__quantity-button:hover{
     background-color: #e68900;
   }
