@@ -2,10 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './GiftBooking.css'; 
 import BookingNavigation from '../BookingNavigation/BookingNavigation';
 
-const GiftBooking = ({  }) => {
+const GiftBooking = () => {
   const [activeStep, setActiveStep] = useState(0);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState({ '15 mins': 0, '30 mins': 0, '45 mins': 0, '60 mins': 0 });
+  const [totalSum, setTotalSum] = useState(0);
+  const [selectedDetails, setSelectedDetails] = useState({
+    duration: '',
+    quantity: 0,
+    total: 0,
+  });
   const [selectedDuration, setSelectedDuration] = useState(null);
+  const [userSelections, setUserSelections] = useState([]); // State to store chosen items and their details
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -17,15 +24,25 @@ const GiftBooking = ({  }) => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const isValidPhone = (phone) => /^\d+$/.test(phone);
+  // Prices for each duration
+  const durationPrices = { '15 mins': 30, '30 mins': 40, '45 mins': 60, '60 mins': 75 };
 
-  const renderError = (fieldName) => (
-    errors[fieldName] ? <div className="gift-booking__form-error">{errors[fieldName]}</div> : null
-  );
+  // Render error messages for fields
+  const renderError = (fieldName) => errors[fieldName] ? <div className="gift-booking__form-error">{errors[fieldName]}</div> : null;
 
-  const handleDurationClick = (value) => {
-    setSelectedDuration(value);
+  // Move to the next step and save all selected details
+  const handleNextStep = () => {
+    const selections = Object.entries(quantity)
+      .filter(([_, qty]) => qty > 0)
+      .map(([duration, qty]) => ({
+        duration,
+        quantity: qty,
+        pricePerItem: durationPrices[duration],
+        totalPrice: qty * durationPrices[duration]
+      }));
+
+    setUserSelections(selections); // Store all selected items and details in the state
+    setActiveStep(1);
   };
 
   const handleBackStep = () => {
@@ -33,90 +50,127 @@ const GiftBooking = ({  }) => {
     setErrors({}); // Reset errors when moving back
   };
 
+  // Calculate the total sum whenever the quantity changes
+  useEffect(() => {
+    const newTotal = Object.keys(quantity).reduce(
+      (sum, key) => sum + (quantity[key] || 0) * (durationPrices[key] || 0),
+      0
+    );
+    setTotalSum(newTotal);
+  }, [quantity]);
+
   const steps = [
     { number: 1, label: 'Card' },
     { number: 2, label: 'Details' },
     { number: 3, label: 'Done' }
   ];
 
+  console.log(userSelections)
+
+    // Generate a sentence based on `userSelections` array
+    const generateSentence = () => {
+      if (userSelections.length === 0) return "No items selected.";
+    
+      // Create a formatted sentence for the items chosen
+      const sentence = userSelections
+        .map(
+          (item) => (
+            <span key={item.duration}>
+              <strong>{item.quantity}gift</strong> {item.quantity > 1 ? 's' : ''} for <strong>{item.duration}</strong>
+            </span>
+          )
+        )
+        .reduce((prev, curr) => [prev, ", ", curr]); // To add commas between items
+    
+      const total = userSelections.reduce((sum, item) => sum + item.totalPrice, 0);
+    
+      return (
+        <>
+          You have selected {sentence} <br/>for a total Price of <strong>£{total}</strong>.
+        </>
+      );
+    };
+    
   return (
     <section className='gift-booking' id="gift-booking">
       <h1 className='gift-booking__title'>GIFT BOOKING</h1>
       <BookingNavigation steps={steps} activeStep={activeStep} setActiveStep={setActiveStep} />
 
       {activeStep === 0 && (
-        <div className='gift-booking__step-0'>
-      {/* Left Column with Image */}
-      <div className='gift-booking__image-container'>
-        <img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />
-      </div>
-      {/* Right Column with Session Durations and Quantity */}
-      <div className='gift-booking__session-container'>
-        <div className='gift-booking__durations-container'>
-          {[
-            { label: '15 mins', price: 30 },
-            { label: '30 mins', price: 40 },
-            { label: '45 mins', price: 60 },
-            { label: '60 mins', price: 75 }
-          ].map((item, index) => (
-            <div key={index} className='gift-booking__duration-row'>
-              {/* Duration Field */}
-              <div className={`gift-booking__duration-label ${selectedDuration === item.label ? 'gift-booking__duration-label_active' : ''}`} onClick={() => setSelectedDuration(item.label)}>
-                {item.label} - £{item.price}
-              </div>
+        <>
+        <div className='gift-booking__reservation'>
+          {/* Left Column with Image */}
+          <div className='gift-booking__image-container'>
+            <img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />
+          </div>
 
-              {/* Quantity Selection for each Duration */}
-              <div className='gift-booking__quantity-container'>
-                <input
-                  className='gift-booking__quantity-input'
-                  type='number'
-                  value={quantity[item.label] || 0}
-                  readOnly
-                />
-                <div className='gift-booking__quantity-buttons'>
-                  <button
-                    type='button'
-                    className='gift-booking__quantity-button'
-                    onClick={() => setQuantity((prev) => ({
-                      ...prev,
-                      [item.label]: Math.max((prev[item.label] || 0) - 1, 0)
-                    }))}
+          {/* Right Column with Session Durations and Quantity */}
+          <div className='gift-booking__session-container'>
+            <div className='gift-booking__durations-container'>
+              {Object.entries(durationPrices).map(([label, price], index) => (
+                <div key={index} className='gift-booking__duration-row'>
+                  {/* Duration Field */}
+                  <div
+                    className={`gift-booking__duration-label ${selectedDuration === label ? 'gift-booking__duration-label_active' : ''}`}
+                    onClick={() => setSelectedDuration(label)}
                   >
-                    -
-                  </button>
-                  <button
-                    type='button'
-                    className='gift-booking__quantity-button'
-                    onClick={() => setQuantity((prev) => ({
-                      ...prev,
-                      [item.label]: (prev[item.label] || 0) + 1
-                    }))}
-                  >
-                    +
-                  </button>
+                    {label} - £{price}
+                  </div>
+
+                  {/* Quantity Selection for each Duration */}
+                  <div className='gift-booking__quantity-container'>
+                    <input
+                      className='gift-booking__quantity-input'
+                      type='number'
+                      value={quantity[label] || 0}
+                      readOnly
+                    />
+                    <div className='gift-booking__quantity-buttons'>
+                      <button
+                        type='button'
+                        className='gift-booking__quantity-button'
+                        onClick={() => setQuantity((prev) => ({
+                          ...prev,
+                          [label]: (prev[label] || 0) + 1
+                        }))}
+                      >
+                        +
+                      </button>
+                      <button
+                        type='button'
+                        className='gift-booking__quantity-button'
+                        onClick={() => setQuantity((prev) => ({
+                          ...prev,
+                          [label]: Math.max((prev[label] || 0) - 1, 0)
+                        }))}
+                      >
+                        -
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        {/* Display Total Sum */}
-        <div className='gift-booking__total-sum'>
-          <h3>Total Sum: £{Object.keys(quantity).reduce((sum, key) => sum + (quantity[key] || 0) * ({ '15 mins': 30, '30 mins': 40, '45 mins': 60, '60 mins': 75 }[key] || 0), 0)}</h3>
-              </div>
-
-              {/* Next Button for Step 1 */}
-              <div className='gift-booking__button-container'>
-                <button
-                  type='button'
-                  className='gift-booking__next-step-button'
-                  onClick={() => setActiveStep(1)}
-                >
-                  Next
-                </button>
-              </div>
+            {/* Display Total Sum */}
+            <div className='gift-booking__total-sum'>
+              <h3>Total Sum: £{totalSum}</h3>
             </div>
           </div>
+        </div>
+
+        {/* Next Button for Step 1 */}
+        <div className='gift-booking__button-container'>
+          <button
+            type='button'
+            className={`gift-booking__next-step-button ${totalSum > 0 ? 'gift-booking__next-step-button_active' : ''}`}
+            onClick={handleNextStep}
+            disabled={totalSum === 0} // Disable button if total sum is zero
+          >
+            Next
+          </button>
+        </div>
+        </>
       )}
 
       {activeStep === 1 && (
@@ -125,9 +179,9 @@ const GiftBooking = ({  }) => {
         <button type='button' className='time__back-button' onClick={handleBackStep}>
           Back
         </button>
-        <p className='time__confirmation-text'>
-          Your selected date and time is:<br /> <strong></strong> at <strong>{}</strong> for <strong>{} minutes</strong>.
-        </p>
+          <p className='time__confirmation-text'>
+          {generateSentence()}
+          </p>
       </div>
         <form className='gift-booking__form'>
           {/* Sender's Information */}
