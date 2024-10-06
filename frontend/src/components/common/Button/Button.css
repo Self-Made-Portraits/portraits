@@ -17,18 +17,21 @@
 .button__book-time{
    background-color: #FF9900;
    color: white;
+   transition: background-color 0.3s ease; /* Added box-shadow transition */
 }
 
 .button__book-time:hover {
   background-color: #e68900;
 }
 
-.button__book-gift{
-    background-color: white;
-    color: black;
+.button__book-gift {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease; /* Added box-shadow transition */
 }
 
 .button__book-gift:hover {
-  background-color: #918E8E;
-  color: white;
+  box-shadow: inset 0 0 0 3px #ff9900; /* Inner border effect */
 }
+
