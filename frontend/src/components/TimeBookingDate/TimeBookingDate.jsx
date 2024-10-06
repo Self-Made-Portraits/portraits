@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 import './TimeBookingDate.css';
 
 const TimeBookingDate = ({setErrors, setActiveStep, selectedDate, setSelectedDate, selectedDuration, setSelectedDuration, selectedTime, setSelectedTime}) => {
-     // Error states for Step 1
+    // Error states for Step 1
   const [durationError, setDurationError] = useState('');
   const [dateError, setDateError] = useState('');
   const [timeError, setTimeError] = useState('');
@@ -15,7 +15,7 @@ const TimeBookingDate = ({setErrors, setActiveStep, selectedDate, setSelectedDat
 
      
   const isValidDate = selectedDate && new Date(selectedDate).setHours(0, 0, 0, 0) >= today;
-      // Reset error messages when a user makes a new selection
+    // Reset error messages when a user makes a new selection
       useEffect(() => {
         if (selectedDuration) setDurationError('');
         if (selectedDate) setDateError('');
@@ -33,32 +33,31 @@ const TimeBookingDate = ({setErrors, setActiveStep, selectedDate, setSelectedDat
     const handleNextStep = () => {
       let hasError = false;
   
-      // Validate Duration
+    // Validate Duration
       if (!selectedDuration) {
         setDurationError('Please select a session duration');
         hasError = true;
       }
   
-      // Validate Date
+    // Validate Date
       if (!selectedDate || !isValidDate) {
         setDateError('Please select a valid date');
         hasError = true;
       }
   
-      // Validate Time Slot
+    // Validate Time Slot
       if (!selectedTime) {
         setTimeError('Please select a time slot');
         hasError = true;
       }
   
-      // If there are no errors, proceed to the next step
+    // If there are no errors, proceed to the next step
       if (!hasError) {
         setActiveStep(1);
         setErrors({})
       }
     };
   
-
     // Generate time slots in 30-minute intervals
     const generateTimeSlots = () => {
       const slots = [];

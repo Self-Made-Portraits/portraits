@@ -8,8 +8,10 @@ const Intro = () => {
             <div className='intro__container'>
             <div className='intro__text'>
             <h1 className='intro__title'>{`No one else.\nJust you`}</h1>
-            <p className='intro__subtitle'>65£ for 40 min</p>
-            <p className='intro__subtitle'>35£ for 15 min</p>
+            <p className='intro__subtitle'>70£ for 60 min</p>
+            <p className='intro__subtitle'>60£ for 45 min</p>
+            <p className='intro__subtitle'>40£ for 30 min</p>
+            <p className='intro__subtitle'>30£ for 15 min</p>
             </div>
             <div className='intro__buttons'>
             <Button book={true} type={"time"} value={"BOOK"}/>
