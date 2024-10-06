@@ -3,7 +3,15 @@
   margin: 0 auto;
   padding-top: 65px;
   height: 100%;
+  margin-bottom: 50px;
 }
+
+.gift-booking__title {
+  font-size: 28px;
+  color: #918E8E;
+  margin: 2px auto;
+}
+
 .gift-booking-control {
     display: flex;
     align-items: center;
@@ -11,8 +19,11 @@
   }
   
   .gift-booking-input {
-    width: 50px;
-    height: 25px; /* Smaller height */
+    padding: 8px 10px;
+    border: 1px solid #918E8E;
+    border-radius: 4px;
+    width: 100px;
+    height: 20px; /* Smaller height */
     text-align: center;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -37,18 +48,7 @@
   justify-content: space-between;
   align-items: center;
   width: 120px;
-  margin-bottom: 20px;
-}
-
-/* Quantity Input */
-.gift-booking-input {
-  width: 60px;
-  height: 40px;
-  text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
+  /* margin-bottom: 20px; */
 }
 
 /* Quantity Button Styling */
@@ -60,10 +60,16 @@
 
 .gift-booking__quantity-button-up,
 .gift-booking__quantity-button-down {
-  width: 40px;
+  background-color: #918E8E;
+  color: white;
+  cursor: pointer;
+  width: 30px;
   height: 20px;
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
+  border: none;
+  border-radius: 4px;
+  margin-left: 20px ;
+  /* border: 1px solid #ddd;
+  background-color: #f9f9f9; */
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
@@ -71,7 +77,8 @@
 
 .gift-booking__quantity-button-up:hover,
 .gift-booking__quantity-button-down:hover {
-  background-color: #ddd;
+  background-color: #ff9900;
+  color: white;
 }
 
   
