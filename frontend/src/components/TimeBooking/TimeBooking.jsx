@@ -57,7 +57,7 @@ const TimeBooking = () => {
 
       {/* Step 1: Session Selection */}
       {activeStep === 0 && (
-        <TimeBookingDate 
+        <TimeBookingDate
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
           selectedDuration={selectedDuration}
