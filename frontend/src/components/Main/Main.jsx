@@ -12,7 +12,7 @@ import Navigation from "../Navigation/Navigation"; // Import your Navigation com
 export default function Main({ setActiveSection }) {
 
   // Array of section IDs to observe
-  const sectionIds = ["about", "photos", "gifts", "faq", "contact"];
+  const sectionIds = ["intro", "about", "photos", "gifts", "faq", "contact"];
 
   useEffect(() => {
     const observerOptions = {
