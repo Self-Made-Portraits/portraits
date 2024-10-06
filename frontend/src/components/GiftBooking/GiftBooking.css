@@ -351,6 +351,13 @@
   .gift-booking__session-container{
     width: 100%;
   }
+  .gift-booking__quantity-input{
+    width: 200px;
+  }
+  .gift-booking__quantity-button{
+    width: 40px;
+    height: 40px;
+  }
 }
 
 @media screen and (max-width: 375px) {
@@ -362,4 +369,13 @@
     margin-top: 2px;
     font-size: 12px;
   }
+}
+@media screen and (max-width: 375px) {
+.gift-booking__quantity-input{
+  width: 180px;
+}
+.gift-booking__quantity-button{
+  width: 30px;
+  height: 30px;
+}
 }
