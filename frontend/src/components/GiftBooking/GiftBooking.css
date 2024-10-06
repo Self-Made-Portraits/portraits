@@ -47,8 +47,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 120px;
+  width: 100%;
   /* margin-bottom: 20px; */
+}
+
+.gift-booking__duration-row{
+  width: 100%;
 }
 
 /* Quantity Button Styling */
@@ -241,9 +245,15 @@
     justify-content: space-between;
     align-items: center;
   }
+  
   .gift-booking__session-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width:  350px;
+    padding: 20px 30px;
   }
+
   .gift-booking__quantity-button{
     background-color: #918E8E;
     border: none;
@@ -256,13 +266,24 @@
   .gift-booking__quantity-button:hover{
     background-color: #e68900;
   }
-
+  
+  @media screen and (max-width: 1200px) {
+  .gift-booking__reservation{
+    width: 80%;
+  }
+  .gift-booking__quantity-input{
+    min-height: 20px;
+  }
+  }
   @media screen and (max-width: 800px) {
   .gift-booking__form-field-pets-desktop{
     display: none;
   }
   .gift-booking__form-field-pets-mobile{
     display: block;
+  }
+  .gift-booking__next-step-button{
+    margin: 0 auto;
   }
   }
 
@@ -274,7 +295,24 @@
     .gift-booking__form-group input {
         min-height: 30px;
         padding: 4px 5px;
-    }     
+    } 
+
+    .gift-booking__reservation{
+      flex-direction: column;
+    }
+
+    .gift-booking__button-container{
+      margin: 20px auto 0;
+    }
+    .gift-booking__quantity-input{
+      min-height: 30px;
+    }
+    .gift-booking__duration-row{
+      margin: 20px auto;
+    }
+    .gift-booking__quantity-buttons{
+      gap: 5px;
+    }
 }
 
 
@@ -282,6 +320,14 @@
   .gift-booking__form-error{
     margin-top: 2px;
     font-size: 14px;
+  }
+  .gift-booking__image{
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+  }
+  .gift-booking__session-container{
+    width: 100%;
   }
 }
 
