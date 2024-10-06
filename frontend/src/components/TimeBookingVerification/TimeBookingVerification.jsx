@@ -27,7 +27,21 @@ const [remainingTime, setRemainingTime] = useState(600); // Timer state for coun
 const [coupon, setCoupon] = useState("");
 const [discount, setDiscount] = useState(0);
 // Calculate the final price based on the duration
-  const finalPrice = (selectedDuration === 15 ? 30 : 60) - discount;
+const finalPrice = (() => {
+  switch (selectedDuration) {
+    case 15:
+      return 30 - discount; // 30 pounds for 15 minutes
+    case 30:
+      return 40 - discount; // 40 pounds for 30 minutes
+    case 45:
+      return 60 - discount; // 60 pounds for 45 minutes
+    case 60:
+      return 75 - discount; // 75 pounds for 60 minutes
+    default:
+      return 0; // Fallback in case no duration is selected
+  }
+})();
+
 
   // Handle applying a coupon code
   const handleApplyCoupon = () => {
