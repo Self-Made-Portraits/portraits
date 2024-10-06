@@ -300,7 +300,7 @@
     min-height: 20px;
   }
   }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1023px) {
   .gift-booking__form-field-pets-desktop{
     display: none;
   }
@@ -310,9 +310,6 @@
   .gift-booking__next-step-button{
     margin: 0 auto;
   }
-  }
-
-  @media screen and (max-width: 767px) {
     .gift-booking__form{
         width: 90%;
     }
