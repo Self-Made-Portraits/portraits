@@ -95,7 +95,7 @@ const GiftBooking = () => {
 
     const steps = [
       { number: 1, label: 'Type' },
-      { number: 2, label: isDigital ? 'Digital Card Details' : isPhysical ? 'Physical Card Details' : 'Card' },
+      { number: 2, label: 'Session' },
       { number: 3, label: 'Details' },
       { number: 4, label: 'Done' }
     ];
@@ -264,6 +264,7 @@ const GiftBooking = () => {
                     Physical Card
                     <input
                       type='radio'
+                      className='gift-booking__card-option-radio'
                       value='Physical Card'
                       checked={selectedCardType === "Physical Card"}
                       onChange={() => setSelectedCardType("Physical Card")}
@@ -276,6 +277,7 @@ const GiftBooking = () => {
                     Digital Card
                     <input
                       type='radio'
+                      className='gift-booking__card-option-radio'
                       value='Digital Card'
                       checked={selectedCardType === "Digital Card"}
                       onChange={() => setSelectedCardType("Digital Card")}

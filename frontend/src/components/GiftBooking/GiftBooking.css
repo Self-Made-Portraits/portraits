@@ -313,6 +313,12 @@
     margin-top: 50px;
     text-align: center;
   }
+  .gift-booking__card-option-radio{
+    cursor: pointer;
+  }
+  .gift-booking__card-image{
+    height: 250px;
+  }
 
   @media screen and (max-width: 1200px) {
   .gift-booking__reservation{

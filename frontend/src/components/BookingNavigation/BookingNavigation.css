@@ -78,7 +78,17 @@
     } 
     .time__step{
         width: 95%;
-      }    
+      } 
+
+    .time__point {
+        width: 30px;
+        height: 30px;
+      }
+
+    .time__number{
+      font-size: 14px;
+    }
+
     }
 
     @media screen and (max-width: 424px) {
