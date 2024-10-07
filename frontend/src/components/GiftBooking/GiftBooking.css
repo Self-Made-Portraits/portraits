@@ -306,7 +306,12 @@
     align-items: center;
   }
   .gift-booking__card{
-    margin: 100px 50px 0;
+    margin: 30px 50px 20px;
+  }
+
+  .gift-booking__subtitle{
+    margin-top: 50px;
+    text-align: center;
   }
 
   @media screen and (max-width: 1200px) {
@@ -351,6 +356,9 @@
     }
     .gift-booking__quantity-buttons{
       gap: 5px;
+    }
+    .gift-booking__card-selection{
+      flex-direction: column;
     }
 }
 

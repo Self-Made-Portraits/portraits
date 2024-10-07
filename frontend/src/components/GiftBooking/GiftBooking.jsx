@@ -40,7 +40,7 @@ const GiftBooking = () => {
 
   // Render error messages for fields
   const renderError = (fieldName) => errors[fieldName] ? <div className="gift-booking__form-error">{errors[fieldName]}</div> : null;
-  
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [activeStep]);
@@ -255,7 +255,7 @@ const GiftBooking = () => {
 
       {activeStep === 0 && (
         <>
-              <h2>Choose Your Gift Card Type</h2>
+              <h2 className='gift-booking__subtitle'>Choose Your Gift Card Type</h2>
             {/* Right Column with Card Type Selection */}
             <div className='gift-booking__card-selection'>
                 <div className={`gift-booking__card ${selectedCardType === "Physical Card" ? 'gift-booking__card_selected' : ''}`}>
