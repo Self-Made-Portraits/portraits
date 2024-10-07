@@ -19,6 +19,8 @@ function App() {
       <Route exact path="/portraits" element={<Main activeSection={activeSection} setActiveSection={setActiveSection} />}/>
       <Route exact path="/book/time" element={<TimeBooking/>} />
       <Route exact path="/book/gift" element={<GiftBooking/>} />
+      <Route path="/book/gift/physical" element={<GiftBooking />} />
+      <Route path="/book/gift/digital" element={<GiftBooking />} />
       {/* <Route exact path="/book/gift/digital" element={<GiftBookingDigital/>} />
       <Route exact path="/book/gift/physical" element={<GiftBookingPhysical/>} /> */}
       </Routes>

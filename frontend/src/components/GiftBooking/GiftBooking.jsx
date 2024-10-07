@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate, useLocation  } from 'react-router-dom'; // Import useNavigate
 import './GiftBooking.css'; 
 import BookingNavigation from '../BookingNavigation/BookingNavigation';
 import { formatTime, transactionTimer } from '../../utils/constants';
@@ -28,11 +28,29 @@ const GiftBooking = () => {
   const [remainingTime, setRemainingTime] = useState(600); // Timer state for countdown (in seconds)
   const [selectedCardType, setSelectedCardType] = useState('');
   const navigate = useNavigate(); // Initialize the navigate hook
+  const location = useLocation(); // Get the current path
+
   // Prices for each duration
   const durationPrices = { '15 mins': 30, '30 mins': 40, '45 mins': 60, '60 mins': 75 };
 
+
+    // Determine the steps dynamically based on the card type selected
+    const isDigital = location.pathname.includes('digital');
+    const isPhysical = location.pathname.includes('physical');
+
   // Render error messages for fields
   const renderError = (fieldName) => errors[fieldName] ? <div className="gift-booking__form-error">{errors[fieldName]}</div> : null;
+
+    // Handle navigation based on the URL path
+    useEffect(() => {
+      if (location.pathname.includes('digital')) {
+        setActiveStep(1); // Show digital step
+      } else if (location.pathname.includes('physical')) {
+        setActiveStep(1); // Show physical step
+      } else {
+        setActiveStep(0); // Default to card selection step
+      }
+    }, [location.pathname]);
 
   // Move to the next step and save all selected details
   const handleNextStep = () => {
@@ -49,10 +67,18 @@ const GiftBooking = () => {
     setActiveStep(2);
   };
 
-  const handleBackStep = () => {
-    setActiveStep(activeStep - 1);
-    setErrors({}); // Reset errors when moving back
-  };
+
+    // Handle the "Back" button click behavior
+    const handleBackStep = () => {
+      if (activeStep === 1) {
+        // If we're on step 1, go back to the initial type selection path
+        navigate('/book/gift');
+      } else {
+        // Otherwise, go back to the previous step
+        setActiveStep((prevStep) => prevStep - 1);
+        setErrors({}); // Reset errors when moving back
+      }
+    }
 
     // Calculate the total sum whenever the quantity changes
     useEffect(() => {
@@ -65,11 +91,10 @@ const GiftBooking = () => {
 
     const steps = [
       { number: 1, label: 'Type' },
-      { number: 2, label: 'Card' },
+      { number: 2, label: isDigital ? 'Digital Details' : isPhysical ? 'Physical Details' : 'Card' },
       { number: 3, label: 'Details' },
       { number: 4, label: 'Done' }
     ];
-
   console.log(userSelections)
 
     // Generate a sentence based on `userSelections` array
@@ -153,13 +178,19 @@ const GiftBooking = () => {
       setSelectedCardType(event.target.value);
     };
 
-    const handleNextStepType = () => {
+  // Navigation logic based on the selected card type
+  const handleNextStepType = () => {
+    if (activeStep === 0) {
       if (selectedCardType === "Physical Card") {
-        navigate("/book/gift/physical"); // Redirect to the Physical Card route
+        navigate("/book/gift/physical");
       } else if (selectedCardType === "Digital Card") {
-        navigate("/book/gift/digital"); // Redirect to the Digital Card route
+        navigate("/book/gift/digital");
       }
-    };
+    } else {
+      // Move to the next internal step within the same path
+      setActiveStep((prevStep) => prevStep + 1);
+    }
+  };
 
     // Handle form validation state
   useEffect(() => {
@@ -195,6 +226,16 @@ const GiftBooking = () => {
     // Cleanup interval on component unmount or activeStep change
     return cleanup;
   }, [activeStep]);
+
+    // Set step based on the path when component mounts or path changes
+  // Set active step based on the path when component mounts or path changes
+  useEffect(() => {
+    if (isDigital || isPhysical) {
+      setActiveStep(1);
+    } else {
+      setActiveStep(0);
+    }
+  }, [location.pathname]);
 
   return (
     <section className='gift-booking' id="gift-booking">
@@ -251,6 +292,7 @@ const GiftBooking = () => {
                 Back
               </button>
         </div>
+        {isDigital && (
         <div className='gift-booking__reservation'>
           {/* Left Column with Image */}
           <div className='gift-booking__image-container'>
@@ -310,6 +352,7 @@ const GiftBooking = () => {
             </div>
           </div>
         </div>
+        )}
 
         {/* Next Button for Step 1 */}
         <div className='gift-booking__button-container'>
