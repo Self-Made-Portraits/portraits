@@ -297,6 +297,7 @@
 
   .gift-booking__card-selection{
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -330,6 +331,11 @@
     width: 300px;
     height: 300px;
     margin: 0 auto;
+  }
+
+  .gift-booking__error-message{
+    position: absolute; 
+    top: -16px;
   }
 
   @media screen and (max-width: 1200px) {

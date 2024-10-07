@@ -35,8 +35,8 @@ const GiftBooking = () => {
 
 
     // Determine the steps dynamically based on the card type selected
-    const isDigital = location.pathname.includes('digital');
-    const isPhysical = location.pathname.includes('physical');
+  const isDigital = location.pathname.includes('digital');
+  const isPhysical = location.pathname.includes('physical');
 
   // Render error messages for fields
   const renderError = (fieldName) => errors[fieldName] ? <div className="gift-booking__form-error">{errors[fieldName]}</div> : null;
@@ -99,7 +99,6 @@ const GiftBooking = () => {
       { number: 3, label: 'Details' },
       { number: 4, label: 'Done' }
     ];
-  console.log(userSelections)
 
       // Create a formatted sentence for the items chosen
       const generateSentence = () => {
@@ -178,7 +177,7 @@ const GiftBooking = () => {
           });
           const result = await response.json();
           console.log('Booking data sent successfully:', result);
-          setActiveStep(2); // Move to Step 3 (Done) after successful form submission
+          setActiveStep(3); // Move to Step 3 (Done) after successful form submission
         } catch (error) {
           console.error('Error sending booking data:', error);
         }
@@ -189,19 +188,22 @@ const GiftBooking = () => {
       setSelectedCardType(event.target.value);
     };
 
-  // Navigation logic based on the selected card type
+  // Handle the "Next" button click
   const handleNextStepType = () => {
-    if (activeStep === 0) {
-      if (selectedCardType === "Physical Card") {
-        navigate("/book/gift/physical");
-      } else if (selectedCardType === "Digital Card") {
-        navigate("/book/gift/digital");
-      }
+    if (!selectedCardType) {
+      // If no card type is selected, show an error message
+      setErrors({ selectedCardType: 'Please select a card type before proceeding' });
     } else {
-      // Move to the next internal step within the same path
-      setActiveStep((prevStep) => prevStep + 1);
+      // If a card type is selected, clear errors and navigate to the appropriate route
+      setErrors({});
+      if (selectedCardType === 'Physical Card') {
+        navigate('/book/gift/physical');
+      } else if (selectedCardType === 'Digital Card') {
+        navigate('/book/gift/digital');
+      }
     }
   };
+  
 
     // Handle form validation state
   useEffect(() => {
@@ -238,7 +240,6 @@ const GiftBooking = () => {
     return cleanup;
   }, [activeStep]);
 
-    // Set step based on the path when component mounts or path changes
   // Set active step based on the path when component mounts or path changes
   useEffect(() => {
     if (isDigital || isPhysical) {
@@ -259,6 +260,7 @@ const GiftBooking = () => {
               <h2 className='gift-booking__subtitle'>Choose Your Gift Card Type</h2>
             {/* Right Column with Card Type Selection */}
             <div className='gift-booking__card-selection'>
+            <div className='gift-booking__error-message'>{renderError('selectedCardType')}</div>
                 <div className={`gift-booking__card ${selectedCardType === "Physical Card" ? 'gift-booking__card_selected' : ''}`}>
                   <img src="https://via.placeholder.com/200" alt="Physical Card" className='gift-booking__card-image' />
                   <label className='gift-booking__card-option'>
@@ -292,7 +294,7 @@ const GiftBooking = () => {
               type='button'
               className={`gift-booking__next-step-button ${selectedCardType ? 'gift-booking__next-step-button_active' : ''}`}
               onClick={handleNextStepType}
-              disabled={!selectedCardType} // Disable button if no card type is selected
+              //disabled={!selectedCardType} // Disable button if no card type is selected
             >
               Next
             </button>
