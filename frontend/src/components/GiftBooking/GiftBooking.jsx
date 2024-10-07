@@ -255,6 +255,7 @@ const GiftBooking = () => {
 
       {activeStep === 0 && (
         <>
+        <div className='gift-booking__choice'>
               <h2 className='gift-booking__subtitle'>Choose Your Gift Card Type</h2>
             {/* Right Column with Card Type Selection */}
             <div className='gift-booking__card-selection'>
@@ -296,26 +297,27 @@ const GiftBooking = () => {
               Next
             </button>
           </div>
+          </div>
       </>
       )}
       {activeStep === 1 && (
         <>
-        <div className='time__confirmation'>
-              <button type='button' className='time__back-button' onClick={handleBackStep}>
-                Back
-              </button>
-        </div>
+      <div className='time__confirmation'>
+        <button type='button' className='time__back-button' onClick={handleBackStep}>
+          Back
+        </button>
+        {isDigital ? (
+            <p className='time__confirmation-text time__confirmation-text_subtitle'>You chose Digital Card </p>) : ( 
+              <p className='time__confirmation-text time__confirmation-text_subtitle'>You chose Physical Card </p>)
+            }
+      </div>
 
         <div className='gift-booking__reservation'>
           {/* Left Column with Image */}
           <div className='gift-booking__image-container'>
           {isDigital ? (
-            <><p>Choose your Digital Card</p>
-          <img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />
-          </>) :
-          (<><p>Choose your Physical Card</p>
-          <img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />
-          </>)}
+          <img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />) :
+          (<img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />)}
           </div>
 
           {/* Right Column with Session Durations and Quantity */}
