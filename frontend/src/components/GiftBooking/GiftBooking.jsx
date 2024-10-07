@@ -91,7 +91,7 @@ const GiftBooking = () => {
 
     const steps = [
       { number: 1, label: 'Type' },
-      { number: 2, label: isDigital ? 'Digital Details' : isPhysical ? 'Physical Details' : 'Card' },
+      { number: 2, label: isDigital ? 'Digital Card Details' : isPhysical ? 'Physical Card Details' : 'Card' },
       { number: 3, label: 'Details' },
       { number: 4, label: 'Done' }
     ];
