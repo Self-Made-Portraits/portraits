@@ -97,29 +97,36 @@ const GiftBooking = () => {
     ];
   console.log(userSelections)
 
-    // Generate a sentence based on `userSelections` array
-    const generateSentence = () => {
-      if (userSelections.length === 0) return "No items selected.";
-    
       // Create a formatted sentence for the items chosen
-      const sentence = userSelections
-        .map(
-          (item) => (
+      const generateSentence = () => {
+        if (userSelections.length === 0) return "No items selected.";
+      
+        // Calculate the total number of selected cards
+        const totalCards = userSelections.reduce((sum, item) => sum + item.quantity, 0);
+      
+        // Determine the correct wording for the card type
+        const cardType = isDigital
+          ? totalCards > 1 ? "Digital Cards" : "Digital Card"
+          : totalCards > 1 ? "Physical Cards" : "Physical Card";
+      
+        // Create a formatted sentence for the items chosen
+        const sentence = userSelections
+          .map((item) => (
             <span key={item.duration}>
-              <br/>
-              <strong>{item.quantity} gift{item.quantity > 1 ? 's' : ''}</strong>  for <strong>{item.duration}</strong>
+              <strong>{item.quantity} gift{item.quantity > 1 ? 's' : ''}</strong> for <strong>{item.duration}</strong>
             </span>
-          )
-        )
-        .reduce((prev, curr) => [prev, ", ", curr]); // To add commas between items
-    
-      const total = userSelections.reduce((sum, item) => sum + item.totalPrice, 0);
-      return (
-        <>
-          You have selected {sentence} <br/>for a total Price of <strong>£{total}</strong>.
-        </>
-      );
-    };
+          ))
+          .reduce((prev, curr) => [prev, ", ", curr]);
+      
+        const total = userSelections.reduce((sum, item) => sum + item.totalPrice, 0);
+      
+        return (
+          <>
+            You chose {cardType}: <br />{sentence} <br />for a total price of <strong>£{total}</strong>.
+          </>
+        );
+      };
+      
 
     // Validate fields before submission
     const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -292,11 +299,17 @@ const GiftBooking = () => {
                 Back
               </button>
         </div>
-        {isDigital && (
+
         <div className='gift-booking__reservation'>
           {/* Left Column with Image */}
           <div className='gift-booking__image-container'>
-            <img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />
+          {isDigital ? (
+            <><p>Choose your Digital Card</p>
+          <img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />
+          </>) :
+          (<><p>Choose your Physical Card</p>
+          <img src="https://via.placeholder.com/400" alt="Gift Image" className='gift-booking__image' />
+          </>)}
           </div>
 
           {/* Right Column with Session Durations and Quantity */}
@@ -352,7 +365,6 @@ const GiftBooking = () => {
             </div>
           </div>
         </div>
-        )}
 
         {/* Next Button for Step 1 */}
         <div className='gift-booking__button-container'>
