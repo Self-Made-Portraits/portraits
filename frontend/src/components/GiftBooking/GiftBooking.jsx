@@ -40,6 +40,10 @@ const GiftBooking = () => {
 
   // Render error messages for fields
   const renderError = (fieldName) => errors[fieldName] ? <div className="gift-booking__form-error">{errors[fieldName]}</div> : null;
+  
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeStep]);
 
     // Handle navigation based on the URL path
     useEffect(() => {
