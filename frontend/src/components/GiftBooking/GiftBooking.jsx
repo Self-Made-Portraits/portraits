@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './GiftBooking.css'; 
 import BookingNavigation from '../BookingNavigation/BookingNavigation';
 import { formatTime, transactionTimer } from '../../utils/constants';
@@ -25,7 +26,8 @@ const GiftBooking = () => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [errors, setErrors] = useState({});
   const [remainingTime, setRemainingTime] = useState(600); // Timer state for countdown (in seconds)
-
+  const [selectedCardType, setSelectedCardType] = useState('');
+  const navigate = useNavigate(); // Initialize the navigate hook
   // Prices for each duration
   const durationPrices = { '15 mins': 30, '30 mins': 40, '45 mins': 60, '60 mins': 75 };
 
@@ -44,7 +46,7 @@ const GiftBooking = () => {
       }));
 
     setUserSelections(selections); // Store all selected items and details in the state
-    setActiveStep(1);
+    setActiveStep(2);
   };
 
   const handleBackStep = () => {
@@ -62,9 +64,10 @@ const GiftBooking = () => {
     }, [quantity]);
 
     const steps = [
-      { number: 1, label: 'Card' },
-      { number: 2, label: 'Details' },
-      { number: 3, label: 'Done' }
+      { number: 1, label: 'Type' },
+      { number: 2, label: 'Card' },
+      { number: 3, label: 'Details' },
+      { number: 4, label: 'Done' }
     ];
 
   console.log(userSelections)
@@ -146,6 +149,18 @@ const GiftBooking = () => {
       }
     };
 
+    const handleCardTypeChange = (event) => {
+      setSelectedCardType(event.target.value);
+    };
+
+    const handleNextStepType = () => {
+      if (selectedCardType === "Physical Card") {
+        navigate("/book/gift/physical"); // Redirect to the Physical Card route
+      } else if (selectedCardType === "Digital Card") {
+        navigate("/book/gift/digital"); // Redirect to the Digital Card route
+      }
+    };
+
     // Handle form validation state
   useEffect(() => {
     setIsFormValid(
@@ -188,6 +203,54 @@ const GiftBooking = () => {
 
       {activeStep === 0 && (
         <>
+              <h2>Choose Your Gift Card Type</h2>
+            {/* Right Column with Card Type Selection */}
+            <div className='gift-booking__card-selection'>
+                <div className={`gift-booking__card ${selectedCardType === "Physical Card" ? 'gift-booking__card_selected' : ''}`}>
+                  <img src="https://via.placeholder.com/200" alt="Physical Card" className='gift-booking__card-image' />
+                  <label className='gift-booking__card-option'>
+                    Physical Card
+                    <input
+                      type='radio'
+                      value='Physical Card'
+                      checked={selectedCardType === "Physical Card"}
+                      onChange={() => setSelectedCardType("Physical Card")}
+                    />
+                  </label>
+                </div>
+                <div className={`gift-booking__card ${selectedCardType === "Digital Card" ? 'gift-booking__card_selected' : ''}`}>
+                  <img src="https://via.placeholder.com/200" alt="Digital Card" className='gift-booking__card-image' />
+                  <label className='gift-booking__card-option'>
+                    Digital Card
+                    <input
+                      type='radio'
+                      value='Digital Card'
+                      checked={selectedCardType === "Digital Card"}
+                      onChange={() => setSelectedCardType("Digital Card")}
+                    />
+                  </label>
+                </div>
+              </div>
+          {/* Next Button for Step 1 */}
+          <div className='gift-booking__button-container'>
+            <button
+              type='button'
+              className={`gift-booking__next-step-button ${selectedCardType ? 'gift-booking__next-step-button_active' : ''}`}
+              onClick={handleNextStepType}
+              disabled={!selectedCardType} // Disable button if no card type is selected
+            >
+              Next
+            </button>
+          </div>
+      </>
+      )}
+      {activeStep === 1 && (
+        <>
+        <div className='time__confirmation'>
+              <button type='button' className='time__back-button' onClick={handleBackStep}>
+                Back
+              </button>
+        </div>
         <div className='gift-booking__reservation'>
           {/* Left Column with Image */}
           <div className='gift-booking__image-container'>
@@ -262,7 +325,7 @@ const GiftBooking = () => {
         </>
       )}
 
-      {activeStep === 1 && (
+      {activeStep === 2 && (
               <>
               <div className='time__confirmation'>
               <button type='button' className='time__back-button' onClick={handleBackStep}>
@@ -384,7 +447,7 @@ const GiftBooking = () => {
               </div>
               </>
       )}
-      {activeStep === 2 && (
+      {activeStep === 3 && (
         <>
     <div className='time__confirmation'>
       <button type='button' className='time__back-button' onClick={handleBackStep}>
@@ -397,20 +460,20 @@ const GiftBooking = () => {
       <p className='time__timer'>
         <strong>Time Remaining: {formatTime(remainingTime)}</strong>
       </p>
-<p className='time__confirmation-final-text'>
-  <h2>Gift Details</h2>
-  {userSelections.length > 0 ? (
-    <>
-      <strong>Selected Gifts:</strong>
-        {userSelections.map((item, index) => (
-          <p key={index}>
-            {item.quantity} gift{item.quantity > 1 ? 's' : ''} for {item.duration} - £{item.pricePerItem} each (Total: £{item.totalPrice})
-          </p>
-        ))}
-    </>
-  ) : (
-    <p>No gifts selected.</p>
-  )}
+      <p className='time__confirmation-final-text'>
+        <h2>Gift Details</h2>
+        {userSelections.length > 0 ? (
+          <>
+            <strong>Selected Gifts:</strong>
+              {userSelections.map((item, index) => (
+                <p key={index}>
+                  {item.quantity} gift{item.quantity > 1 ? 's' : ''} for {item.duration} - £{item.pricePerItem} each (Total: £{item.totalPrice})
+                </p>
+              ))}
+          </>
+        ) : (
+          <p>No gifts selected.</p>
+        )}
         <h2>Sender's Information</h2>
         <strong>First Name:</strong> {firstName} <br />
         <strong>Last Name:</strong> {lastName} <br />
